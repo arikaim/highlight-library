@@ -1,4 +1,4 @@
-### Arikaim CMS Highlight.js library
+## Arikaim CMS Highlight.js library
 ![version: 1.0.0](https://img.shields.io/github/release/arikaim/highlight-library.svg)
 
 
@@ -10,7 +10,8 @@
   
 
 #### Install
-```bash
+
+```sh
 
 composer require arikaim/highlight-library
 

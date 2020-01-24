@@ -1,10 +1,10 @@
 {
-    "version": "9.17.1",
+    "version": "9.18.0",
     "name": "highlight",
     "title": "Highlight.js",
     "package-type": "library",
     "repository": "https://github.com/arikaim/highlight-library.git",
-    "help": "https://highlightjs.org/usage/",
+    "help": "https://highlightjs.org/usage/",       
     "description": "Syntax highlighting for the Web",
     "files": [
         "highlight.pack.js",
