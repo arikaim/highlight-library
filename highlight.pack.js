@@ -1,2 +1,675 @@
-/*! highlight.js v9.18.0 | BSD3 License | git.io/hljslicense */
-!function(e){var n="object"==typeof window&&window||"object"==typeof self&&self;"undefined"==typeof exports||exports.nodeType?n&&(n.hljs=e({}),"function"==typeof define&&define.amd&&define([],function(){return n.hljs})):e(exports)}(function(a){var f=[],o=Object.keys,_={},g={},C=!0,n=/^(no-?highlight|plain|text)$/i,E=/\blang(?:uage)?-([\w-]+)\b/i,t=/((^(<[^>]+>|\t|)+|(?:\n)))/gm,r={case_insensitive:"cI",lexemes:"l",contains:"c",keywords:"k",subLanguage:"sL",className:"cN",begin:"b",beginKeywords:"bK",end:"e",endsWithParent:"eW",illegal:"i",excludeBegin:"eB",excludeEnd:"eE",returnBegin:"rB",returnEnd:"rE",variants:"v",IDENT_RE:"IR",UNDERSCORE_IDENT_RE:"UIR",NUMBER_RE:"NR",C_NUMBER_RE:"CNR",BINARY_NUMBER_RE:"BNR",RE_STARTERS_RE:"RSR",BACKSLASH_ESCAPE:"BE",APOS_STRING_MODE:"ASM",QUOTE_STRING_MODE:"QSM",PHRASAL_WORDS_MODE:"PWM",C_LINE_COMMENT_MODE:"CLCM",C_BLOCK_COMMENT_MODE:"CBCM",HASH_COMMENT_MODE:"HCM",NUMBER_MODE:"NM",C_NUMBER_MODE:"CNM",BINARY_NUMBER_MODE:"BNM",CSS_NUMBER_MODE:"CSSNM",REGEXP_MODE:"RM",TITLE_MODE:"TM",UNDERSCORE_TITLE_MODE:"UTM",COMMENT:"C",beginRe:"bR",endRe:"eR",illegalRe:"iR",lexemesRe:"lR",terminators:"t",terminator_end:"tE"},m="</span>",O="Could not find the language '{}', did you forget to load/include a language module?",B={classPrefix:"hljs-",tabReplace:null,useBR:!1,languages:void 0},c="of and for in not or if then".split(" ");function x(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}function d(e){return e.nodeName.toLowerCase()}function R(e){return n.test(e)}function i(e){var n,t={},r=Array.prototype.slice.call(arguments,1);for(n in e)t[n]=e[n];return r.forEach(function(e){for(n in e)t[n]=e[n]}),t}function p(e){var a=[];return function e(n,t){for(var r=n.firstChild;r;r=r.nextSibling)3===r.nodeType?t+=r.nodeValue.length:1===r.nodeType&&(a.push({event:"start",offset:t,node:r}),t=e(r,t),d(r).match(/br|hr|img|input/)||a.push({event:"stop",offset:t,node:r}));return t}(e,0),a}function v(e,n,t){var r=0,a="",i=[];function o(){return e.length&&n.length?e[0].offset!==n[0].offset?e[0].offset<n[0].offset?e:n:"start"===n[0].event?e:n:e.length?e:n}function c(e){a+="<"+d(e)+f.map.call(e.attributes,function(e){return" "+e.nodeName+'="'+x(e.value).replace(/"/g,"&quot;")+'"'}).join("")+">"}function l(e){a+="</"+d(e)+">"}function u(e){("start"===e.event?c:l)(e.node)}for(;e.length||n.length;){var s=o();if(a+=x(t.substring(r,s[0].offset)),r=s[0].offset,s===e){for(i.reverse().forEach(l);u(s.splice(0,1)[0]),(s=o())===e&&s.length&&s[0].offset===r;);i.reverse().forEach(c)}else"start"===s[0].event?i.push(s[0].node):i.pop(),u(s.splice(0,1)[0])}return a+x(t.substr(r))}function l(n){return n.v&&!n.cached_variants&&(n.cached_variants=n.v.map(function(e){return i(n,{v:null},e)})),n.cached_variants?n.cached_variants:function e(n){return!!n&&(n.eW||e(n.starts))}(n)?[i(n,{starts:n.starts?i(n.starts):null})]:Object.isFrozen(n)?[i(n)]:[n]}function u(e){if(r&&!e.langApiRestored){for(var n in e.langApiRestored=!0,r)e[n]&&(e[r[n]]=e[n]);(e.c||[]).concat(e.v||[]).forEach(u)}}function M(n,t){var i={};return"string"==typeof n?r("keyword",n):o(n).forEach(function(e){r(e,n[e])}),i;function r(a,e){t&&(e=e.toLowerCase()),e.split(" ").forEach(function(e){var n,t,r=e.split("|");i[r[0]]=[a,(n=r[0],(t=r[1])?Number(t):function(e){return-1!=c.indexOf(e.toLowerCase())}(n)?0:1)]})}}function S(r){function s(e){return e&&e.source||e}function f(e,n){return new RegExp(s(e),"m"+(r.cI?"i":"")+(n?"g":""))}function a(a){var i,e,o={},c=[],l={},t=1;function n(e,n){o[t]=e,c.push([e,n]),t+=new RegExp(n.toString()+"|").exec("").length-1+1}for(var r=0;r<a.c.length;r++){n(e=a.c[r],e.bK?"\\.?(?:"+e.b+")\\.?":e.b)}a.tE&&n("end",a.tE),a.i&&n("illegal",a.i);var u=c.map(function(e){return e[1]});return i=f(function(e,n){for(var t=/\[(?:[^\\\]]|\\.)*\]|\(\??|\\([1-9][0-9]*)|\\./,r=0,a="",i=0;i<e.length;i++){var o=r+=1,c=s(e[i]);for(0<i&&(a+=n),a+="(";0<c.length;){var l=t.exec(c);if(null==l){a+=c;break}a+=c.substring(0,l.index),c=c.substring(l.index+l[0].length),"\\"==l[0][0]&&l[1]?a+="\\"+String(Number(l[1])+o):(a+=l[0],"("==l[0]&&r++)}a+=")"}return a}(u,"|"),!0),l.lastIndex=0,l.exec=function(e){var n;if(0===c.length)return null;i.lastIndex=l.lastIndex;var t=i.exec(e);if(!t)return null;for(var r=0;r<t.length;r++)if(null!=t[r]&&null!=o[""+r]){n=o[""+r];break}return"string"==typeof n?(t.type=n,t.extra=[a.i,a.tE]):(t.type="begin",t.rule=n),t},l}if(r.c&&-1!=r.c.indexOf("self")){if(!C)throw new Error("ERR: contains `self` is not supported at the top-level of a language.  See documentation.");r.c=r.c.filter(function(e){return"self"!=e})}!function n(t,e){t.compiled||(t.compiled=!0,t.k=t.k||t.bK,t.k&&(t.k=M(t.k,r.cI)),t.lR=f(t.l||/\w+/,!0),e&&(t.bK&&(t.b="\\b("+t.bK.split(" ").join("|")+")\\b"),t.b||(t.b=/\B|\b/),t.bR=f(t.b),t.endSameAsBegin&&(t.e=t.b),t.e||t.eW||(t.e=/\B|\b/),t.e&&(t.eR=f(t.e)),t.tE=s(t.e)||"",t.eW&&e.tE&&(t.tE+=(t.e?"|":"")+e.tE)),t.i&&(t.iR=f(t.i)),null==t.relevance&&(t.relevance=1),t.c||(t.c=[]),t.c=Array.prototype.concat.apply([],t.c.map(function(e){return l("self"===e?t:e)})),t.c.forEach(function(e){n(e,t)}),t.starts&&n(t.starts,e),t.t=a(t))}(r)}function T(n,e,a,t){var i=e;function c(e,n,t,r){if(!t&&""===n)return"";if(!e)return n;var a='<span class="'+(r?"":B.classPrefix);return(a+=e+'">')+n+(t?"":m)}function o(){p+=(null!=d.sL?function(){var e="string"==typeof d.sL;if(e&&!_[d.sL])return x(v);var n=e?T(d.sL,v,!0,R[d.sL]):w(v,d.sL.length?d.sL:void 0);return 0<d.relevance&&(M+=n.relevance),e&&(R[d.sL]=n.top),c(n.language,n.value,!1,!0)}:function(){var e,n,t,r,a,i,o;if(!d.k)return x(v);for(r="",n=0,d.lR.lastIndex=0,t=d.lR.exec(v);t;)r+=x(v.substring(n,t.index)),a=d,i=t,o=g.cI?i[0].toLowerCase():i[0],(e=a.k.hasOwnProperty(o)&&a.k[o])?(M+=e[1],r+=c(e[0],x(t[0]))):r+=x(t[0]),n=d.lR.lastIndex,t=d.lR.exec(v);return r+x(v.substr(n))})(),v=""}function l(e){p+=e.cN?c(e.cN,"",!0):"",d=Object.create(e,{parent:{value:d}})}function u(e){var n=e[0],t=e.rule;return t&&t.endSameAsBegin&&(t.eR=new RegExp(n.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&"),"m")),t.skip?v+=n:(t.eB&&(v+=n),o(),t.rB||t.eB||(v=n)),l(t),t.rB?0:n.length}function s(e){var n=e[0],t=i.substr(e.index),r=function e(n,t){if(r=n.eR,a=t,(i=r&&r.exec(a))&&0===i.index){for(;n.endsParent&&n.parent;)n=n.parent;return n}var r,a,i;if(n.eW)return e(n.parent,t)}(d,t);if(r){var a=d;for(a.skip?v+=n:(a.rE||a.eE||(v+=n),o(),a.eE&&(v=n));d.cN&&(p+=m),d.skip||d.sL||(M+=d.relevance),(d=d.parent)!==r.parent;);return r.starts&&(r.endSameAsBegin&&(r.starts.eR=r.eR),l(r.starts)),a.rE?0:n.length}}var f={};function r(e,n){var t=n&&n[0];if(v+=e,null==t)return o(),0;if("begin"==f.type&&"end"==n.type&&f.index==n.index&&""===t)return v+=i.slice(n.index,n.index+1),1;if("begin"===(f=n).type)return u(n);if("illegal"===n.type&&!a)throw new Error('Illegal lexeme "'+t+'" for mode "'+(d.cN||"<unnamed>")+'"');if("end"===n.type){var r=s(n);if(null!=r)return r}return v+=t,t.length}var g=D(n);if(!g)throw console.error(O.replace("{}",n)),new Error('Unknown language: "'+n+'"');S(g);var E,d=t||g,R={},p="";for(E=d;E!==g;E=E.parent)E.cN&&(p=c(E.cN,"",!0)+p);var v="",M=0;try{for(var b,h,N=0;d.t.lastIndex=N,b=d.t.exec(i);)h=r(i.substring(N,b.index),b),N=b.index+h;for(r(i.substr(N)),E=d;E.parent;E=E.parent)E.cN&&(p+=m);return{relevance:M,value:p,i:!1,language:n,top:d}}catch(e){if(e.message&&-1!==e.message.indexOf("Illegal"))return{i:!0,relevance:0,value:x(i)};if(C)return{relevance:0,value:x(i),language:n,top:d,errorRaised:e};throw e}}function w(t,e){e=e||B.languages||o(_);var r={relevance:0,value:x(t)},a=r;return e.filter(D).filter(L).forEach(function(e){var n=T(e,t,!1);n.language=e,n.relevance>a.relevance&&(a=n),n.relevance>r.relevance&&(a=r,r=n)}),a.language&&(r.second_best=a),r}function b(e){return B.tabReplace||B.useBR?e.replace(t,function(e,n){return B.useBR&&"\n"===e?"<br>":B.tabReplace?n.replace(/\t/g,B.tabReplace):""}):e}function s(e){var n,t,r,a,i,o,c,l,u,s,f=function(e){var n,t,r,a,i=e.className+" ";if(i+=e.parentNode?e.parentNode.className:"",t=E.exec(i)){var o=D(t[1]);return o||(console.warn(O.replace("{}",t[1])),console.warn("Falling back to no-highlight mode for this block.",e)),o?t[1]:"no-highlight"}for(n=0,r=(i=i.split(/\s+/)).length;n<r;n++)if(R(a=i[n])||D(a))return a}(e);R(f)||(B.useBR?(n=document.createElement("div")).innerHTML=e.innerHTML.replace(/\n/g,"").replace(/<br[ \/]*>/g,"\n"):n=e,i=n.textContent,r=f?T(f,i,!0):w(i),(t=p(n)).length&&((a=document.createElement("div")).innerHTML=r.value,r.value=v(t,p(a),i)),r.value=b(r.value),e.innerHTML=r.value,e.className=(o=e.className,c=f,l=r.language,u=c?g[c]:l,s=[o.trim()],o.match(/\bhljs\b/)||s.push("hljs"),-1===o.indexOf(u)&&s.push(u),s.join(" ").trim()),e.result={language:r.language,re:r.relevance},r.second_best&&(e.second_best={language:r.second_best.language,re:r.second_best.relevance}))}function h(){if(!h.called){h.called=!0;var e=document.querySelectorAll("pre code");f.forEach.call(e,s)}}var N={disableAutodetect:!0};function D(e){return e=(e||"").toLowerCase(),_[e]||_[g[e]]}function L(e){var n=D(e);return n&&!n.disableAutodetect}return a.highlight=T,a.highlightAuto=w,a.fixMarkup=b,a.highlightBlock=s,a.configure=function(e){B=i(B,e)},a.initHighlighting=h,a.initHighlightingOnLoad=function(){window.addEventListener("DOMContentLoaded",h,!1),window.addEventListener("load",h,!1)},a.registerLanguage=function(n,e){var t;try{t=e(a)}catch(e){if(console.error("Language definition for '{}' could not be registered.".replace("{}",n)),!C)throw e;console.error(e),t=N}u(_[n]=t),t.rawDefinition=e.bind(null,a),t.aliases&&t.aliases.forEach(function(e){g[e]=n})},a.listLanguages=function(){return o(_)},a.getLanguage=D,a.requireLanguage=function(e){var n=D(e);if(n)return n;throw new Error("The '{}' language is required, but not loaded.".replace("{}",e))},a.autoDetection=L,a.inherit=i,a.debugMode=function(){C=!1},a.IR=a.IDENT_RE="[a-zA-Z]\\w*",a.UIR=a.UNDERSCORE_IDENT_RE="[a-zA-Z_]\\w*",a.NR=a.NUMBER_RE="\\b\\d+(\\.\\d+)?",a.CNR=a.C_NUMBER_RE="(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)",a.BNR=a.BINARY_NUMBER_RE="\\b(0b[01]+)",a.RSR=a.RE_STARTERS_RE="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~",a.BE=a.BACKSLASH_ESCAPE={b:"\\\\[\\s\\S]",relevance:0},a.ASM=a.APOS_STRING_MODE={cN:"string",b:"'",e:"'",i:"\\n",c:[a.BE]},a.QSM=a.QUOTE_STRING_MODE={cN:"string",b:'"',e:'"',i:"\\n",c:[a.BE]},a.PWM=a.PHRASAL_WORDS_MODE={b:/\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\b/},a.C=a.COMMENT=function(e,n,t){var r=a.inherit({cN:"comment",b:e,e:n,c:[]},t||{});return r.c.push(a.PWM),r.c.push({cN:"doctag",b:"(?:TODO|FIXME|NOTE|BUG|XXX):",relevance:0}),r},a.CLCM=a.C_LINE_COMMENT_MODE=a.C("//","$"),a.CBCM=a.C_BLOCK_COMMENT_MODE=a.C("/\\*","\\*/"),a.HCM=a.HASH_COMMENT_MODE=a.C("#","$"),a.NM=a.NUMBER_MODE={cN:"number",b:a.NR,relevance:0},a.CNM=a.C_NUMBER_MODE={cN:"number",b:a.CNR,relevance:0},a.BNM=a.BINARY_NUMBER_MODE={cN:"number",b:a.BNR,relevance:0},a.CSSNM=a.CSS_NUMBER_MODE={cN:"number",b:a.NR+"(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",relevance:0},a.RM=a.REGEXP_MODE={cN:"regexp",b:/\//,e:/\/[gimuy]*/,i:/\n/,c:[a.BE,{b:/\[/,e:/\]/,relevance:0,c:[a.BE]}]},a.TM=a.TITLE_MODE={cN:"title",b:a.IR,relevance:0},a.UTM=a.UNDERSCORE_TITLE_MODE={cN:"title",b:a.UIR,relevance:0},a.METHOD_GUARD={b:"\\.\\s*"+a.UIR,relevance:0},[a.BE,a.ASM,a.QSM,a.PWM,a.C,a.CLCM,a.CBCM,a.HCM,a.NM,a.CNM,a.BNM,a.CSSNM,a.RM,a.TM,a.UTM,a.METHOD_GUARD].forEach(function(e){!function n(t){Object.freeze(t);var r="function"==typeof t;Object.getOwnPropertyNames(t).forEach(function(e){!t.hasOwnProperty(e)||null===t[e]||"object"!=typeof t[e]&&"function"!=typeof t[e]||r&&("caller"===e||"callee"===e||"arguments"===e)||Object.isFrozen(t[e])||n(t[e])});return t}(e)}),a});hljs.registerLanguage("scss",function(e){var t="@[a-z-]+",r={cN:"variable",b:"(\\$[a-zA-Z-][a-zA-Z0-9_-]*)\\b"},i={cN:"number",b:"#[0-9A-Fa-f]+"};e.CSSNM,e.QSM,e.ASM,e.CBCM;return{cI:!0,i:"[=/|']",c:[e.CLCM,e.CBCM,{cN:"selector-id",b:"\\#[A-Za-z0-9_-]+",relevance:0},{cN:"selector-class",b:"\\.[A-Za-z0-9_-]+",relevance:0},{cN:"selector-attr",b:"\\[",e:"\\]",i:"$"},{cN:"selector-tag",b:"\\b(a|abbr|acronym|address|area|article|aside|audio|b|base|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|div|dl|dt|em|embed|fieldset|figcaption|figure|footer|form|frame|frameset|(h[1-6])|head|header|hgroup|hr|html|i|iframe|img|input|ins|kbd|keygen|label|legend|li|link|map|mark|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|rp|rt|ruby|samp|script|section|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|ul|var|video)\\b",relevance:0},{cN:"selector-pseudo",b:":(visited|valid|root|right|required|read-write|read-only|out-range|optional|only-of-type|only-child|nth-of-type|nth-last-of-type|nth-last-child|nth-child|not|link|left|last-of-type|last-child|lang|invalid|indeterminate|in-range|hover|focus|first-of-type|first-line|first-letter|first-child|first|enabled|empty|disabled|default|checked|before|after|active)"},{cN:"selector-pseudo",b:"::(after|before|choices|first-letter|first-line|repeat-index|repeat-item|selection|value)"},r,{cN:"attribute",b:"\\b(src|z-index|word-wrap|word-spacing|word-break|width|widows|white-space|visibility|vertical-align|unicode-bidi|transition-timing-function|transition-property|transition-duration|transition-delay|transition|transform-style|transform-origin|transform|top|text-underline-position|text-transform|text-shadow|text-rendering|text-overflow|text-indent|text-decoration-style|text-decoration-line|text-decoration-color|text-decoration|text-align-last|text-align|tab-size|table-layout|right|resize|quotes|position|pointer-events|perspective-origin|perspective|page-break-inside|page-break-before|page-break-after|padding-top|padding-right|padding-left|padding-bottom|padding|overflow-y|overflow-x|overflow-wrap|overflow|outline-width|outline-style|outline-offset|outline-color|outline|orphans|order|opacity|object-position|object-fit|normal|none|nav-up|nav-right|nav-left|nav-index|nav-down|min-width|min-height|max-width|max-height|mask|marks|margin-top|margin-right|margin-left|margin-bottom|margin|list-style-type|list-style-position|list-style-image|list-style|line-height|letter-spacing|left|justify-content|initial|inherit|ime-mode|image-orientation|image-resolution|image-rendering|icon|hyphens|height|font-weight|font-variant-ligatures|font-variant|font-style|font-stretch|font-size-adjust|font-size|font-language-override|font-kerning|font-feature-settings|font-family|font|float|flex-wrap|flex-shrink|flex-grow|flex-flow|flex-direction|flex-basis|flex|filter|empty-cells|display|direction|cursor|counter-reset|counter-increment|content|column-width|column-span|column-rule-width|column-rule-style|column-rule-color|column-rule|column-gap|column-fill|column-count|columns|color|clip-path|clip|clear|caption-side|break-inside|break-before|break-after|box-sizing|box-shadow|box-decoration-break|bottom|border-width|border-top-width|border-top-style|border-top-right-radius|border-top-left-radius|border-top-color|border-top|border-style|border-spacing|border-right-width|border-right-style|border-right-color|border-right|border-radius|border-left-width|border-left-style|border-left-color|border-left|border-image-width|border-image-source|border-image-slice|border-image-repeat|border-image-outset|border-image|border-color|border-collapse|border-bottom-width|border-bottom-style|border-bottom-right-radius|border-bottom-left-radius|border-bottom-color|border-bottom|border|background-size|background-repeat|background-position|background-origin|background-image|background-color|background-clip|background-attachment|background-blend-mode|background|backface-visibility|auto|animation-timing-function|animation-play-state|animation-name|animation-iteration-count|animation-fill-mode|animation-duration|animation-direction|animation-delay|animation|align-self|align-items|align-content)\\b",i:"[^\\s]"},{b:"\\b(whitespace|wait|w-resize|visible|vertical-text|vertical-ideographic|uppercase|upper-roman|upper-alpha|underline|transparent|top|thin|thick|text|text-top|text-bottom|tb-rl|table-header-group|table-footer-group|sw-resize|super|strict|static|square|solid|small-caps|separate|se-resize|scroll|s-resize|rtl|row-resize|ridge|right|repeat|repeat-y|repeat-x|relative|progress|pointer|overline|outside|outset|oblique|nowrap|not-allowed|normal|none|nw-resize|no-repeat|no-drop|newspaper|ne-resize|n-resize|move|middle|medium|ltr|lr-tb|lowercase|lower-roman|lower-alpha|loose|list-item|line|line-through|line-edge|lighter|left|keep-all|justify|italic|inter-word|inter-ideograph|inside|inset|inline|inline-block|inherit|inactive|ideograph-space|ideograph-parenthesis|ideograph-numeric|ideograph-alpha|horizontal|hidden|help|hand|groove|fixed|ellipsis|e-resize|double|dotted|distribute|distribute-space|distribute-letter|distribute-all-lines|disc|disabled|default|decimal|dashed|crosshair|collapse|col-resize|circle|char|center|capitalize|break-word|break-all|bottom|both|bolder|bold|block|bidi-override|below|baseline|auto|always|all-scroll|absolute|table|table-cell)\\b"},{b:":",e:";",c:[r,i,e.CSSNM,e.QSM,e.ASM,{cN:"meta",b:"!important"}]},{b:"@(page|font-face)",l:t,k:"@page @font-face"},{b:"@",e:"[{;]",rB:!0,k:"and or not only",c:[{b:t,cN:"keyword"},r,e.QSM,e.ASM,i,e.CSSNM]}]}});hljs.registerLanguage("json",function(e){var i={literal:"true false null"},n=[e.CLCM,e.CBCM],c=[e.QSM,e.CNM],r={e:",",eW:!0,eE:!0,c:c,k:i},t={b:"{",e:"}",c:[{cN:"attr",b:/"/,e:/"/,c:[e.BE],i:"\\n"},e.inherit(r,{b:/:/})].concat(n),i:"\\S"},a={b:"\\[",e:"\\]",c:[e.inherit(r)],i:"\\S"};return c.push(t,a),n.forEach(function(e){c.push(e)}),{c:c,k:i,i:"\\S"}});hljs.registerLanguage("nginx",function(e){var r={cN:"variable",v:[{b:/\$\d+/},{b:/\$\{/,e:/}/},{b:"[\\$\\@]"+e.UIR}]},b={eW:!0,l:"[a-z/_]+",k:{literal:"on off yes no true false none blocked debug info notice warn error crit select break last permanent redirect kqueue rtsig epoll poll /dev/poll"},relevance:0,i:"=>",c:[e.HCM,{cN:"string",c:[e.BE,r],v:[{b:/"/,e:/"/},{b:/'/,e:/'/}]},{b:"([a-z]+):/",e:"\\s",eW:!0,eE:!0,c:[r]},{cN:"regexp",c:[e.BE,r],v:[{b:"\\s\\^",e:"\\s|{|;",rE:!0},{b:"~\\*?\\s+",e:"\\s|{|;",rE:!0},{b:"\\*(\\.[a-z\\-]+)+"},{b:"([a-z\\-]+\\.)+\\*"}]},{cN:"number",b:"\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(:\\d{1,5})?\\b"},{cN:"number",b:"\\b\\d+[kKmMgGdshdwy]*\\b",relevance:0},r]};return{aliases:["nginxconf"],c:[e.HCM,{b:e.UIR+"\\s+{",rB:!0,e:"{",c:[{cN:"section",b:e.UIR}],relevance:0},{b:e.UIR+"\\s",e:";|{",rB:!0,c:[{cN:"attribute",b:e.UIR,starts:b}],relevance:0}],i:"[^\\s\\}]"}});hljs.registerLanguage("apache",function(e){var r={cN:"number",b:"[\\$%]\\d+"};return{aliases:["apacheconf"],cI:!0,c:[e.HCM,{cN:"section",b:"</?",e:">"},{cN:"attribute",b:/\w+/,relevance:0,k:{nomarkup:"order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername"},starts:{e:/$/,relevance:0,k:{literal:"on off all"},c:[{cN:"meta",b:"\\s\\[",e:"\\]$"},{cN:"variable",b:"[\\$%]\\{",e:"\\}",c:["self",r]},r,e.QSM]}}],i:/\S/}});hljs.registerLanguage("typescript",function(e){var r="[A-Za-z$_][0-9A-Za-z$_]*",t={keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class public private protected get set super static implements enum export import declare type namespace abstract as from extends async await",literal:"true false null undefined NaN Infinity",built_in:"eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document any number boolean string void Promise"},n={cN:"meta",b:"@"+r},a={b:"\\(",e:/\)/,k:t,c:["self",e.QSM,e.ASM,e.NM]},c={cN:"params",b:/\(/,e:/\)/,eB:!0,eE:!0,k:t,c:[e.CLCM,e.CBCM,n,a]},s={cN:"number",v:[{b:"\\b(0[bB][01]+)n?"},{b:"\\b(0[oO][0-7]+)n?"},{b:e.CNR+"n?"}],relevance:0},o={cN:"subst",b:"\\$\\{",e:"\\}",k:t,c:[]},i={b:"html`",e:"",starts:{e:"`",rE:!1,c:[e.BE,o],sL:"xml"}},l={b:"css`",e:"",starts:{e:"`",rE:!1,c:[e.BE,o],sL:"css"}},b={cN:"string",b:"`",e:"`",c:[e.BE,o]};return o.c=[e.ASM,e.QSM,i,l,b,s,e.RM],{aliases:["ts"],k:t,c:[{cN:"meta",b:/^\s*['"]use strict['"]/},e.ASM,e.QSM,i,l,b,e.CLCM,e.CBCM,s,{b:"("+e.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[e.CLCM,e.CBCM,e.RM,{cN:"function",b:"(\\(.*?\\)|"+e.IR+")\\s*=>",rB:!0,e:"\\s*=>",c:[{cN:"params",v:[{b:e.IR},{b:/\(\s*\)/},{b:/\(/,e:/\)/,eB:!0,eE:!0,k:t,c:["self",e.CLCM,e.CBCM]}]}]}],relevance:0},{cN:"function",bK:"function",e:/[\{;]/,eE:!0,k:t,c:["self",e.inherit(e.TM,{b:r}),c],i:/%/,relevance:0},{bK:"constructor",e:/[\{;]/,eE:!0,c:["self",c]},{b:/module\./,k:{built_in:"module"},relevance:0},{bK:"module",e:/\{/,eE:!0},{bK:"interface",e:/\{/,eE:!0,k:"interface extends"},{b:/\$[(.]/},{b:"\\."+e.IR,relevance:0},n,a]}});hljs.registerLanguage("php",function(e){var c={b:"\\$+[a-zA-Z_-ÿ][a-zA-Z0-9_-ÿ]*"},i={cN:"meta",b:/<\?(php)?|\?>/},t={cN:"string",c:[e.BE,i],v:[{b:'b"',e:'"'},{b:"b'",e:"'"},e.inherit(e.ASM,{i:null}),e.inherit(e.QSM,{i:null})]},a={v:[e.BNM,e.CNM]};return{aliases:["php","php3","php4","php5","php6","php7"],cI:!0,k:"and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception default die require __FUNCTION__ enddeclare final try switch continue endfor endif declare unset true false trait goto instanceof insteadof __DIR__ __NAMESPACE__ yield finally",c:[e.HCM,e.C("//","$",{c:[i]}),e.C("/\\*","\\*/",{c:[{cN:"doctag",b:"@[A-Za-z]+"}]}),e.C("__halt_compiler.+?;",!1,{eW:!0,k:"__halt_compiler",l:e.UIR}),{cN:"string",b:/<<<['"]?\w+['"]?$/,e:/^\w+;?$/,c:[e.BE,{cN:"subst",v:[{b:/\$\w+/},{b:/\{\$/,e:/\}/}]}]},i,{cN:"keyword",b:/\$this\b/},c,{b:/(::|->)+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/},{cN:"function",bK:"function",e:/[;{]/,eE:!0,i:"\\$|\\[|%",c:[e.UTM,{cN:"params",b:"\\(",e:"\\)",c:["self",c,e.CBCM,t,a]}]},{cN:"class",bK:"class interface",e:"{",eE:!0,i:/[:\(\$"]/,c:[{bK:"extends implements"},e.UTM]},{bK:"namespace",e:";",i:/[\.']/,c:[e.UTM]},{bK:"use",e:";",c:[e.UTM]},{b:"=>"},t,a]}});hljs.registerLanguage("diff",function(e){return{aliases:["patch"],c:[{cN:"meta",relevance:10,v:[{b:/^@@ +\-\d+,\d+ +\+\d+,\d+ +@@$/},{b:/^\*\*\* +\d+,\d+ +\*\*\*\*$/},{b:/^\-\-\- +\d+,\d+ +\-\-\-\-$/}]},{cN:"comment",v:[{b:/Index: /,e:/$/},{b:/={3,}/,e:/$/},{b:/^\-{3}/,e:/$/},{b:/^\*{3} /,e:/$/},{b:/^\+{3}/,e:/$/},{b:/^\*{15}$/}]},{cN:"addition",b:"^\\+",e:"$"},{cN:"deletion",b:"^\\-",e:"$"},{cN:"addition",b:"^\\!",e:"$"}]}});hljs.registerLanguage("bash",function(e){var t={cN:"variable",v:[{b:/\$[\w\d#@][\w\d_]*/},{b:/\$\{(.*?)}/}]},a={cN:"string",b:/"/,e:/"/,c:[e.BE,t,{cN:"variable",b:/\$\(/,e:/\)/,c:[e.BE]}]};return{aliases:["sh","zsh"],l:/\b-?[a-z\._]+\b/,k:{keyword:"if then else elif fi for while in do done case esac function",literal:"true false",built_in:"break cd continue eval exec exit export getopts hash pwd readonly return shift test times trap umask unset alias bind builtin caller command declare echo enable help let local logout mapfile printf read readarray source type typeset ulimit unalias set shopt autoload bg bindkey bye cap chdir clone comparguments compcall compctl compdescribe compfiles compgroups compquote comptags comptry compvalues dirs disable disown echotc echoti emulate fc fg float functions getcap getln history integer jobs kill limit log noglob popd print pushd pushln rehash sched setcap setopt stat suspend ttyctl unfunction unhash unlimit unsetopt vared wait whence where which zcompile zformat zftp zle zmodload zparseopts zprof zpty zregexparse zsocket zstyle ztcp",_:"-ne -eq -lt -gt -f -d -e -s -l -a"},c:[{cN:"meta",b:/^#![^\n]+sh\s*$/,relevance:10},{cN:"function",b:/\w[\w\d_]*\s*\(\s*\)\s*\{/,rB:!0,c:[e.inherit(e.TM,{b:/\w[\w\d_]*/})],relevance:0},e.HCM,a,{cN:"",b:/\\"/},{cN:"string",b:/'/,e:/'/},t]}});hljs.registerLanguage("less",function(e){function r(e){return{cN:"string",b:"~?"+e+".*?"+e}}function t(e,r,t){return{cN:e,b:r,relevance:t}}var a="[\\w-]+",c="("+a+"|@{"+a+"})",s=[],n=[],b={b:"\\(",e:"\\)",c:n,relevance:0};n.push(e.CLCM,e.CBCM,r("'"),r('"'),e.CSSNM,{b:"(url|data-uri)\\(",starts:{cN:"string",e:"[\\)\\n]",eE:!0}},t("number","#[0-9A-Fa-f]+\\b"),b,t("variable","@@?"+a,10),t("variable","@{"+a+"}"),t("built_in","~?`[^`]*?`"),{cN:"attribute",b:a+"\\s*:",e:":",rB:!0,eE:!0},{cN:"meta",b:"!important"});var i=n.concat({b:"{",e:"}",c:s}),l={bK:"when",eW:!0,c:[{bK:"and not"}].concat(n)},o={b:c+"\\s*:",rB:!0,e:"[;}]",relevance:0,c:[{cN:"attribute",b:c,e:":",eE:!0,starts:{eW:!0,i:"[<=$]",relevance:0,c:n}}]},u={cN:"keyword",b:"@(import|media|charset|font-face|(-[a-z]+-)?keyframes|supports|document|namespace|page|viewport|host)\\b",starts:{e:"[;{}]",rE:!0,c:n,relevance:0}},v={cN:"variable",v:[{b:"@"+a+"\\s*:",relevance:15},{b:"@"+a}],starts:{e:"[;}]",rE:!0,c:i}},C={v:[{b:"[\\.#:&\\[>]",e:"[;{}]"},{b:c,e:"{"}],rB:!0,rE:!0,i:"[<='$\"]",relevance:0,c:[e.CLCM,e.CBCM,l,t("keyword","all\\b"),t("variable","@{"+a+"}"),t("selector-tag",c+"%?",0),t("selector-id","#"+c),t("selector-class","\\."+c,0),t("selector-tag","&",0),{cN:"selector-attr",b:"\\[",e:"\\]"},{cN:"selector-pseudo",b:/:(:)?[a-zA-Z0-9\_\-\+\(\)"'.]+/},{b:"\\(",e:"\\)",c:i},{b:"!important"}]};return s.push(e.CLCM,e.CBCM,u,v,o,C),{cI:!0,i:"[=>'/<($\"]",c:s}});hljs.registerLanguage("xml",function(e){var c={cN:"symbol",b:"&[a-z]+;|&#[0-9]+;|&#x[a-f0-9]+;"},s={b:"\\s",c:[{cN:"meta-keyword",b:"#?[a-z_][a-z1-9_-]+",i:"\\n"}]},a=e.inherit(s,{b:"\\(",e:"\\)"}),t=e.inherit(e.ASM,{cN:"meta-string"}),l=e.inherit(e.QSM,{cN:"meta-string"}),r={eW:!0,i:/</,relevance:0,c:[{cN:"attr",b:"[A-Za-z0-9\\._:-]+",relevance:0},{b:/=\s*/,relevance:0,c:[{cN:"string",endsParent:!0,v:[{b:/"/,e:/"/,c:[c]},{b:/'/,e:/'/,c:[c]},{b:/[^\s"'=<>`]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xjb","xsd","xsl","plist","wsf","svg"],cI:!0,c:[{cN:"meta",b:"<![a-z]",e:">",relevance:10,c:[s,l,t,a,{b:"\\[",e:"\\]",c:[{cN:"meta",b:"<![a-z]",e:">",c:[s,a,l,t]}]}]},e.C("\x3c!--","--\x3e",{relevance:10}),{b:"<\\!\\[CDATA\\[",e:"\\]\\]>",relevance:10},c,{cN:"meta",b:/<\?xml/,e:/\?>/,relevance:10},{b:/<\?(php)?/,e:/\?>/,sL:"php",c:[{b:"/\\*",e:"\\*/",skip:!0},{b:'b"',e:'"',skip:!0},{b:"b'",e:"'",skip:!0},e.inherit(e.ASM,{i:null,cN:null,c:null,skip:!0}),e.inherit(e.QSM,{i:null,cN:null,c:null,skip:!0})]},{cN:"tag",b:"<style(?=\\s|>)",e:">",k:{name:"style"},c:[r],starts:{e:"</style>",rE:!0,sL:["css","xml"]}},{cN:"tag",b:"<script(?=\\s|>)",e:">",k:{name:"script"},c:[r],starts:{e:"<\/script>",rE:!0,sL:["actionscript","javascript","handlebars","xml"]}},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"name",b:/[^\/><\s]+/,relevance:0},r]}]}});hljs.registerLanguage("twig",function(e){var t="attribute block constant cycle date dump include max min parent random range source template_from_string",a={bK:t,k:{name:t},relevance:0,c:[{cN:"params",b:"\\(",e:"\\)"}]},r={b:/\|[A-Za-z_]+:?/,k:"abs batch capitalize column convert_encoding date date_modify default escape filter first format inky_to_html inline_css join json_encode keys last length lower map markdown merge nl2br number_format raw reduce replace reverse round slice sort spaceless split striptags title trim upper url_encode",c:[a]},c="apply autoescape block deprecated do embed extends filter flush for from if import include macro sandbox set use verbatim with";return c=c+" "+c.split(" ").map(function(e){return"end"+e}).join(" "),{aliases:["craftcms"],cI:!0,sL:"xml",c:[e.C(/\{#/,/#}/),{cN:"template-tag",b:/\{%/,e:/%}/,c:[{cN:"name",b:/\w+/,k:c,starts:{eW:!0,c:[r,a],relevance:0}}]},{cN:"template-variable",b:/\{\{/,e:/}}/,c:["self",r,a]}]}});hljs.registerLanguage("markdown",function(e){return{aliases:["md","mkdown","mkd"],c:[{cN:"section",v:[{b:"^#{1,6}",e:"$"},{b:"^.+?\\n[=-]{2,}$"}]},{b:"<",e:">",sL:"xml",relevance:0},{cN:"bullet",b:"^\\s*([*+-]|(\\d+\\.))\\s+"},{cN:"strong",b:"[*_]{2}.+?[*_]{2}"},{cN:"emphasis",v:[{b:"\\*.+?\\*"},{b:"_.+?_",relevance:0}]},{cN:"quote",b:"^>\\s+",e:"$"},{cN:"code",v:[{b:"^```\\w*\\s*$",e:"^```[ ]*$"},{b:"`.+?`"},{b:"^( {4}|\\t)",e:"$",relevance:0}]},{b:"^[-\\*]{3,}",e:"$"},{b:"\\[.+?\\][\\(\\[].*?[\\)\\]]",rB:!0,c:[{cN:"string",b:"\\[",e:"\\]",eB:!0,rE:!0,relevance:0},{cN:"link",b:"\\]\\(",e:"\\)",eB:!0,eE:!0},{cN:"symbol",b:"\\]\\[",e:"\\]",eB:!0,eE:!0}],relevance:10},{b:/^\[[^\n]+\]:/,rB:!0,c:[{cN:"symbol",b:/\[/,e:/\]/,eB:!0,eE:!0},{cN:"link",b:/:\s*/,e:/$/,eB:!0}]}]}});hljs.registerLanguage("shell",function(s){return{aliases:["console"],c:[{cN:"meta",b:"^\\s{0,3}[/\\w\\d\\[\\]()@-]*[>%$#]",starts:{e:"$",sL:"bash"}}]}});hljs.registerLanguage("ruby",function(e){var c="[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?",b={keyword:"and then defined module in return redo if BEGIN retry end for self when next until do begin unless END rescue else break undef not super class case require yield alias while ensure elsif or include attr_reader attr_writer attr_accessor",literal:"true false nil"},r={cN:"doctag",b:"@[A-Za-z]+"},a={b:"#<",e:">"},n=[e.C("#","$",{c:[r]}),e.C("^\\=begin","^\\=end",{c:[r],relevance:10}),e.C("^__END__","\\n$")],s={cN:"subst",b:"#\\{",e:"}",k:b},t={cN:"string",c:[e.BE,s],v:[{b:/'/,e:/'/},{b:/"/,e:/"/},{b:/`/,e:/`/},{b:"%[qQwWx]?\\(",e:"\\)"},{b:"%[qQwWx]?\\[",e:"\\]"},{b:"%[qQwWx]?{",e:"}"},{b:"%[qQwWx]?<",e:">"},{b:"%[qQwWx]?/",e:"/"},{b:"%[qQwWx]?%",e:"%"},{b:"%[qQwWx]?-",e:"-"},{b:"%[qQwWx]?\\|",e:"\\|"},{b:/\B\?(\\\d{1,3}|\\x[A-Fa-f0-9]{1,2}|\\u[A-Fa-f0-9]{4}|\\?\S)\b/},{b:/<<[-~]?'?(\w+)(?:.|\n)*?\n\s*\1\b/,rB:!0,c:[{b:/<<[-~]?'?/},{b:/\w+/,endSameAsBegin:!0,c:[e.BE,s]}]}]},i={cN:"params",b:"\\(",e:"\\)",endsParent:!0,k:b},l=[t,a,{cN:"class",bK:"class module",e:"$|;",i:/=/,c:[e.inherit(e.TM,{b:"[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?"}),{b:"<\\s*",c:[{b:"("+e.IR+"::)?"+e.IR}]}].concat(n)},{cN:"function",bK:"def",e:"$|;",c:[e.inherit(e.TM,{b:c}),i].concat(n)},{b:e.IR+"::"},{cN:"symbol",b:e.UIR+"(\\!|\\?)?:",relevance:0},{cN:"symbol",b:":(?!\\s)",c:[t,{b:c}],relevance:0},{cN:"number",b:"(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",relevance:0},{b:"(\\$\\W)|((\\$|\\@\\@?)(\\w+))"},{cN:"params",b:/\|/,e:/\|/,k:b},{b:"("+e.RSR+"|unless)\\s*",k:"unless",c:[a,{cN:"regexp",c:[e.BE,s],i:/\n/,v:[{b:"/",e:"/[a-z]*"},{b:"%r{",e:"}[a-z]*"},{b:"%r\\(",e:"\\)[a-z]*"},{b:"%r!",e:"![a-z]*"},{b:"%r\\[",e:"\\][a-z]*"}]}].concat(n),relevance:0}].concat(n);s.c=l;var d=[{b:/^\s*=>/,starts:{e:"$",c:i.c=l}},{cN:"meta",b:"^([>?]>|[\\w#]+\\(\\w+\\):\\d+:\\d+>|(\\w+-)?\\d+\\.\\d+\\.\\d(p\\d+)?[^>]+>)",starts:{e:"$",c:l}}];return{aliases:["rb","gemspec","podspec","thor","irb"],k:b,i:/\/\*/,c:n.concat(d).concat(l)}});hljs.registerLanguage("yaml",function(e){var b="true false yes no null",a={cN:"string",relevance:0,v:[{b:/'/,e:/'/},{b:/"/,e:/"/},{b:/\S+/}],c:[e.BE,{cN:"template-variable",v:[{b:"{{",e:"}}"},{b:"%{",e:"}"}]}]};return{cI:!0,aliases:["yml","YAML","yaml"],c:[{cN:"attr",v:[{b:"\\w[\\w :\\/.-]*:(?=[ \t]|$)"},{b:'"\\w[\\w :\\/.-]*":(?=[ \t]|$)'},{b:"'\\w[\\w :\\/.-]*':(?=[ \t]|$)"}]},{cN:"meta",b:"^---s*$",relevance:10},{cN:"string",b:"[\\|>]([0-9]?[+-])?[ ]*\\n( *)[\\S ]+\\n(\\2[\\S ]+\\n?)*"},{b:"<%[%=-]?",e:"[%-]?%>",sL:"ruby",eB:!0,eE:!0,relevance:0},{cN:"type",b:"!"+e.UIR},{cN:"type",b:"!!"+e.UIR},{cN:"meta",b:"&"+e.UIR+"$"},{cN:"meta",b:"\\*"+e.UIR+"$"},{cN:"bullet",b:"\\-(?=[ ]|$)",relevance:0},e.HCM,{bK:b,k:{literal:b}},{cN:"number",b:e.CNR+"\\b"},a]}});hljs.registerLanguage("plaintext",function(e){return{disableAutodetect:!0}});hljs.registerLanguage("http",function(e){var t="HTTP/[0-9\\.]+";return{aliases:["https"],i:"\\S",c:[{b:"^"+t,e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{b:"^[A-Z]+ (.*?) "+t+"$",rB:!0,e:"$",c:[{cN:"string",b:" ",e:" ",eB:!0,eE:!0},{b:t},{cN:"keyword",b:"[A-Z]+"}]},{cN:"attribute",b:"^\\w",e:": ",eE:!0,i:"\\n|\\s|=",starts:{e:"$",relevance:0}},{b:"\\n\\n",starts:{sL:[],eW:!0}}]}});hljs.registerLanguage("properties",function(e){var r="[ \\t\\f]*",t="("+r+"[:=]"+r+"|[ \\t\\f]+)",n="([^\\\\\\W:= \\t\\f\\n]|\\\\.)+",a="([^\\\\:= \\t\\f\\n]|\\\\.)+",c={e:t,relevance:0,starts:{cN:"string",e:/$/,relevance:0,c:[{b:"\\\\\\n"}]}};return{cI:!0,i:/\S/,c:[e.C("^\\s*[!#]","$"),{b:n+t,rB:!0,c:[{cN:"attr",b:n,endsParent:!0,relevance:0}],starts:c},{b:a+t,rB:!0,relevance:0,c:[{cN:"meta",b:a,endsParent:!0,relevance:0}],starts:c},{cN:"attr",relevance:0,b:a+r+"$"}]}});hljs.registerLanguage("sql",function(e){var t=e.C("--","$");return{cI:!0,i:/[<>{}*]/,c:[{bK:"begin end start commit rollback savepoint lock alter create drop rename call delete do handler insert load replace select truncate update set show pragma grant merge describe use explain help declare prepare execute deallocate release unlock purge reset change stop analyze cache flush optimize repair kill install uninstall checksum restore check backup revoke comment values with",e:/;/,eW:!0,l:/[\w\.]+/,k:{keyword:"as abort abs absolute acc acce accep accept access accessed accessible account acos action activate add addtime admin administer advanced advise aes_decrypt aes_encrypt after agent aggregate ali alia alias all allocate allow alter always analyze ancillary and anti any anydata anydataset anyschema anytype apply archive archived archivelog are as asc ascii asin assembly assertion associate asynchronous at atan atn2 attr attri attrib attribu attribut attribute attributes audit authenticated authentication authid authors auto autoallocate autodblink autoextend automatic availability avg backup badfile basicfile before begin beginning benchmark between bfile bfile_base big bigfile bin binary_double binary_float binlog bit_and bit_count bit_length bit_or bit_xor bitmap blob_base block blocksize body both bound bucket buffer_cache buffer_pool build bulk by byte byteordermark bytes cache caching call calling cancel capacity cascade cascaded case cast catalog category ceil ceiling chain change changed char_base char_length character_length characters characterset charindex charset charsetform charsetid check checksum checksum_agg child choose chr chunk class cleanup clear client clob clob_base clone close cluster_id cluster_probability cluster_set clustering coalesce coercibility col collate collation collect colu colum column column_value columns columns_updated comment commit compact compatibility compiled complete composite_limit compound compress compute concat concat_ws concurrent confirm conn connec connect connect_by_iscycle connect_by_isleaf connect_by_root connect_time connection consider consistent constant constraint constraints constructor container content contents context contributors controlfile conv convert convert_tz corr corr_k corr_s corresponding corruption cos cost count count_big counted covar_pop covar_samp cpu_per_call cpu_per_session crc32 create creation critical cross cube cume_dist curdate current current_date current_time current_timestamp current_user cursor curtime customdatum cycle data database databases datafile datafiles datalength date_add date_cache date_format date_sub dateadd datediff datefromparts datename datepart datetime2fromparts day day_to_second dayname dayofmonth dayofweek dayofyear days db_role_change dbtimezone ddl deallocate declare decode decompose decrement decrypt deduplicate def defa defau defaul default defaults deferred defi defin define degrees delayed delegate delete delete_all delimited demand dense_rank depth dequeue des_decrypt des_encrypt des_key_file desc descr descri describ describe descriptor deterministic diagnostics difference dimension direct_load directory disable disable_all disallow disassociate discardfile disconnect diskgroup distinct distinctrow distribute distributed div do document domain dotnet double downgrade drop dumpfile duplicate duration each edition editionable editions element ellipsis else elsif elt empty enable enable_all enclosed encode encoding encrypt end end-exec endian enforced engine engines enqueue enterprise entityescaping eomonth error errors escaped evalname evaluate event eventdata events except exception exceptions exchange exclude excluding execu execut execute exempt exists exit exp expire explain explode export export_set extended extent external external_1 external_2 externally extract failed failed_login_attempts failover failure far fast feature_set feature_value fetch field fields file file_name_convert filesystem_like_logging final finish first first_value fixed flash_cache flashback floor flush following follows for forall force foreign form forma format found found_rows freelist freelists freepools fresh from from_base64 from_days ftp full function general generated get get_format get_lock getdate getutcdate global global_name globally go goto grant grants greatest group group_concat group_id grouping grouping_id groups gtid_subtract guarantee guard handler hash hashkeys having hea head headi headin heading heap help hex hierarchy high high_priority hosts hour hours http id ident_current ident_incr ident_seed identified identity idle_time if ifnull ignore iif ilike ilm immediate import in include including increment index indexes indexing indextype indicator indices inet6_aton inet6_ntoa inet_aton inet_ntoa infile initial initialized initially initrans inmemory inner innodb input insert install instance instantiable instr interface interleaved intersect into invalidate invisible is is_free_lock is_ipv4 is_ipv4_compat is_not is_not_null is_used_lock isdate isnull isolation iterate java join json json_exists keep keep_duplicates key keys kill language large last last_day last_insert_id last_value lateral lax lcase lead leading least leaves left len lenght length less level levels library like like2 like4 likec limit lines link list listagg little ln load load_file lob lobs local localtime localtimestamp locate locator lock locked log log10 log2 logfile logfiles logging logical logical_reads_per_call logoff logon logs long loop low low_priority lower lpad lrtrim ltrim main make_set makedate maketime managed management manual map mapping mask master master_pos_wait match matched materialized max maxextents maximize maxinstances maxlen maxlogfiles maxloghistory maxlogmembers maxsize maxtrans md5 measures median medium member memcompress memory merge microsecond mid migration min minextents minimum mining minus minute minutes minvalue missing mod mode model modification modify module monitoring month months mount move movement multiset mutex name name_const names nan national native natural nav nchar nclob nested never new newline next nextval no no_write_to_binlog noarchivelog noaudit nobadfile nocheck nocompress nocopy nocycle nodelay nodiscardfile noentityescaping noguarantee nokeep nologfile nomapping nomaxvalue nominimize nominvalue nomonitoring none noneditionable nonschema noorder nopr nopro noprom nopromp noprompt norely noresetlogs noreverse normal norowdependencies noschemacheck noswitch not nothing notice notnull notrim novalidate now nowait nth_value nullif nulls num numb numbe nvarchar nvarchar2 object ocicoll ocidate ocidatetime ociduration ociinterval ociloblocator ocinumber ociref ocirefcursor ocirowid ocistring ocitype oct octet_length of off offline offset oid oidindex old on online only opaque open operations operator optimal optimize option optionally or oracle oracle_date oradata ord ordaudio orddicom orddoc order ordimage ordinality ordvideo organization orlany orlvary out outer outfile outline output over overflow overriding package pad parallel parallel_enable parameters parent parse partial partition partitions pascal passing password password_grace_time password_lock_time password_reuse_max password_reuse_time password_verify_function patch path patindex pctincrease pctthreshold pctused pctversion percent percent_rank percentile_cont percentile_disc performance period period_add period_diff permanent physical pi pipe pipelined pivot pluggable plugin policy position post_transaction pow power pragma prebuilt precedes preceding precision prediction prediction_cost prediction_details prediction_probability prediction_set prepare present preserve prior priority private private_sga privileges procedural procedure procedure_analyze processlist profiles project prompt protection public publishingservername purge quarter query quick quiesce quota quotename radians raise rand range rank raw read reads readsize rebuild record records recover recovery recursive recycle redo reduced ref reference referenced references referencing refresh regexp_like register regr_avgx regr_avgy regr_count regr_intercept regr_r2 regr_slope regr_sxx regr_sxy reject rekey relational relative relaylog release release_lock relies_on relocate rely rem remainder rename repair repeat replace replicate replication required reset resetlogs resize resource respect restore restricted result result_cache resumable resume retention return returning returns reuse reverse revoke right rlike role roles rollback rolling rollup round row row_count rowdependencies rowid rownum rows rtrim rules safe salt sample save savepoint sb1 sb2 sb4 scan schema schemacheck scn scope scroll sdo_georaster sdo_topo_geometry search sec_to_time second seconds section securefile security seed segment select self semi sequence sequential serializable server servererror session session_user sessions_per_user set sets settings sha sha1 sha2 share shared shared_pool short show shrink shutdown si_averagecolor si_colorhistogram si_featurelist si_positionalcolor si_stillimage si_texture siblings sid sign sin size size_t sizes skip slave sleep smalldatetimefromparts smallfile snapshot some soname sort soundex source space sparse spfile split sql sql_big_result sql_buffer_result sql_cache sql_calc_found_rows sql_small_result sql_variant_property sqlcode sqldata sqlerror sqlname sqlstate sqrt square standalone standby start starting startup statement static statistics stats_binomial_test stats_crosstab stats_ks_test stats_mode stats_mw_test stats_one_way_anova stats_t_test_ stats_t_test_indep stats_t_test_one stats_t_test_paired stats_wsr_test status std stddev stddev_pop stddev_samp stdev stop storage store stored str str_to_date straight_join strcmp strict string struct stuff style subdate subpartition subpartitions substitutable substr substring subtime subtring_index subtype success sum suspend switch switchoffset switchover sync synchronous synonym sys sys_xmlagg sysasm sysaux sysdate sysdatetimeoffset sysdba sysoper system system_user sysutcdatetime table tables tablespace tablesample tan tdo template temporary terminated tertiary_weights test than then thread through tier ties time time_format time_zone timediff timefromparts timeout timestamp timestampadd timestampdiff timezone_abbr timezone_minute timezone_region to to_base64 to_date to_days to_seconds todatetimeoffset trace tracking transaction transactional translate translation treat trigger trigger_nestlevel triggers trim truncate try_cast try_convert try_parse type ub1 ub2 ub4 ucase unarchived unbounded uncompress under undo unhex unicode uniform uninstall union unique unix_timestamp unknown unlimited unlock unnest unpivot unrecoverable unsafe unsigned until untrusted unusable unused update updated upgrade upped upper upsert url urowid usable usage use use_stored_outlines user user_data user_resources users using utc_date utc_timestamp uuid uuid_short validate validate_password_strength validation valist value values var var_samp varcharc vari varia variab variabl variable variables variance varp varraw varrawc varray verify version versions view virtual visible void wait wallet warning warnings week weekday weekofyear wellformed when whene whenev wheneve whenever where while whitespace window with within without work wrapped xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year year_to_month years yearweek",literal:"true false null unknown",built_in:"array bigint binary bit blob bool boolean char character date dec decimal float int int8 integer interval number numeric real record serial serial8 smallint text time timestamp tinyint varchar varchar2 varying void"},c:[{cN:"string",b:"'",e:"'",c:[{b:"''"}]},{cN:"string",b:'"',e:'"',c:[{b:'""'}]},{cN:"string",b:"`",e:"`"},e.CNM,e.CBCM,t,e.HCM]},e.CBCM,t,e.HCM]}});hljs.registerLanguage("css",function(e){var c={b:/(?:[A-Z\_\.\-]+|--[a-zA-Z0-9_-]+)\s*:/,rB:!0,e:";",eW:!0,c:[{cN:"attribute",b:/\S/,e:":",eE:!0,starts:{eW:!0,eE:!0,c:[{b:/[\w-]+\(/,rB:!0,c:[{cN:"built_in",b:/[\w-]+/},{b:/\(/,e:/\)/,c:[e.ASM,e.QSM,e.CSSNM]}]},e.CSSNM,e.QSM,e.ASM,e.CBCM,{cN:"number",b:"#[0-9A-Fa-f]+"},{cN:"meta",b:"!important"}]}}]};return{cI:!0,i:/[=\/|'\$]/,c:[e.CBCM,{cN:"selector-id",b:/#[A-Za-z0-9_-]+/},{cN:"selector-class",b:/\.[A-Za-z0-9_-]+/},{cN:"selector-attr",b:/\[/,e:/\]/,i:"$",c:[e.ASM,e.QSM]},{cN:"selector-pseudo",b:/:(:)?[a-zA-Z0-9\_\-\+\(\)"'.]+/},{b:"@(page|font-face)",l:"@[a-z-]+",k:"@page @font-face"},{b:"@",e:"[{;]",i:/:/,rB:!0,c:[{cN:"keyword",b:/@\-?\w[\w]*(\-\w+)*/},{b:/\s/,eW:!0,eE:!0,relevance:0,k:"and or not only",c:[{b:/[a-z-]+:/,cN:"attribute"},e.ASM,e.QSM,e.CSSNM]}]},{cN:"selector-tag",b:"[a-zA-Z-][a-zA-Z0-9_-]*",relevance:0},{b:"{",e:"}",i:/\S/,c:[e.CBCM,c]}]}});hljs.registerLanguage("javascript",function(e){var r="<>",a="</>",t={b:/<[A-Za-z0-9\\._:-]+/,e:/\/[A-Za-z0-9\\._:-]+>|\/>/},c="[A-Za-z$_][0-9A-Za-z$_]*",n={keyword:"in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as async await static import from as",literal:"true false null undefined NaN Infinity",built_in:"eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document Symbol Set Map WeakSet WeakMap Proxy Reflect Promise"},s={cN:"number",v:[{b:"\\b(0[bB][01]+)n?"},{b:"\\b(0[oO][0-7]+)n?"},{b:e.CNR+"n?"}],relevance:0},o={cN:"subst",b:"\\$\\{",e:"\\}",k:n,c:[]},i={b:"html`",e:"",starts:{e:"`",rE:!1,c:[e.BE,o],sL:"xml"}},b={b:"css`",e:"",starts:{e:"`",rE:!1,c:[e.BE,o],sL:"css"}},l={cN:"string",b:"`",e:"`",c:[e.BE,o]};o.c=[e.ASM,e.QSM,i,b,l,s,e.RM];var u=o.c.concat([e.CBCM,e.CLCM]);return{aliases:["js","jsx","mjs","cjs"],k:n,c:[{cN:"meta",relevance:10,b:/^\s*['"]use (strict|asm)['"]/},{cN:"meta",b:/^#!/,e:/$/},e.ASM,e.QSM,i,b,l,e.CLCM,e.C("/\\*\\*","\\*/",{relevance:0,c:[{cN:"doctag",b:"@[A-Za-z]+",c:[{cN:"type",b:"\\{",e:"\\}",relevance:0},{cN:"variable",b:c+"(?=\\s*(-)|$)",endsParent:!0,relevance:0},{b:/(?=[^\n])\s/,relevance:0}]}]}),e.CBCM,s,{b:/[{,\n]\s*/,relevance:0,c:[{b:c+"\\s*:",rB:!0,relevance:0,c:[{cN:"attr",b:c,relevance:0}]}]},{b:"("+e.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[e.CLCM,e.CBCM,e.RM,{cN:"function",b:"(\\(.*?\\)|"+c+")\\s*=>",rB:!0,e:"\\s*=>",c:[{cN:"params",v:[{b:c},{b:/\(\s*\)/},{b:/\(/,e:/\)/,eB:!0,eE:!0,k:n,c:u}]}]},{cN:"",b:/\s/,e:/\s*/,skip:!0},{v:[{b:r,e:a},{b:t.b,e:t.e}],sL:"xml",c:[{b:t.b,e:t.e,skip:!0,c:["self"]}]}],relevance:0},{cN:"function",bK:"function",e:/\{/,eE:!0,c:[e.inherit(e.TM,{b:c}),{cN:"params",b:/\(/,e:/\)/,eB:!0,eE:!0,c:u}],i:/\[|%/},{b:/\$[(.]/},e.METHOD_GUARD,{cN:"class",bK:"class",e:/[{;=]/,eE:!0,i:/[:"\[\]]/,c:[{bK:"extends"},e.UTM]},{bK:"constructor get set",e:/\{/,eE:!0}],i:/#(?!!)/}});
+/*
+  Highlight.js 10.6.0 (eb122d3b)
+  License: BSD-3-Clause
+  Copyright (c) 2006-2020, Ivan Sagalaev
+*/
+var hljs=function(){"use strict";function e(t){
+return t instanceof Map?t.clear=t.delete=t.set=()=>{
+throw Error("map is read-only")}:t instanceof Set&&(t.add=t.clear=t.delete=()=>{
+throw Error("set is read-only")
+}),Object.freeze(t),Object.getOwnPropertyNames(t).forEach((n=>{var s=t[n]
+;"object"!=typeof s||Object.isFrozen(s)||e(s)})),t}var t=e,n=e;t.default=n
+;class s{constructor(e){void 0===e.data&&(e.data={}),this.data=e.data}
+ignoreMatch(){this.ignore=!0}}function r(e){
+return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#x27;")
+}function a(e,...t){const n=Object.create(null);for(const t in e)n[t]=e[t]
+;return t.forEach((e=>{for(const t in e)n[t]=e[t]})),n}const i=e=>!!e.kind
+;class o{constructor(e,t){
+this.buffer="",this.classPrefix=t.classPrefix,e.walk(this)}addText(e){
+this.buffer+=r(e)}openNode(e){if(!i(e))return;let t=e.kind
+;e.sublanguage||(t=`${this.classPrefix}${t}`),this.span(t)}closeNode(e){
+i(e)&&(this.buffer+="</span>")}value(){return this.buffer}span(e){
+this.buffer+=`<span class="${e}">`}}class l{constructor(){this.rootNode={
+children:[]},this.stack=[this.rootNode]}get top(){
+return this.stack[this.stack.length-1]}get root(){return this.rootNode}add(e){
+this.top.children.push(e)}openNode(e){const t={kind:e,children:[]}
+;this.add(t),this.stack.push(t)}closeNode(){
+if(this.stack.length>1)return this.stack.pop()}closeAllNodes(){
+for(;this.closeNode(););}toJSON(){return JSON.stringify(this.rootNode,null,4)}
+walk(e){return this.constructor._walk(e,this.rootNode)}static _walk(e,t){
+return"string"==typeof t?e.addText(t):t.children&&(e.openNode(t),
+t.children.forEach((t=>this._walk(e,t))),e.closeNode(t)),e}static _collapse(e){
+"string"!=typeof e&&e.children&&(e.children.every((e=>"string"==typeof e))?e.children=[e.children.join("")]:e.children.forEach((e=>{
+l._collapse(e)})))}}class c extends l{constructor(e){super(),this.options=e}
+addKeyword(e,t){""!==e&&(this.openNode(t),this.addText(e),this.closeNode())}
+addText(e){""!==e&&this.add(e)}addSublanguage(e,t){const n=e.root
+;n.kind=t,n.sublanguage=!0,this.add(n)}toHTML(){
+return new o(this,this.options).value()}finalize(){return!0}}function u(e){
+return e?"string"==typeof e?e:e.source:null}
+const g="[a-zA-Z]\\w*",d="[a-zA-Z_]\\w*",h="\\b\\d+(\\.\\d+)?",f="(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)",p="\\b(0b[01]+)",m={
+begin:"\\\\[\\s\\S]",relevance:0},b={className:"string",begin:"'",end:"'",
+illegal:"\\n",contains:[m]},x={className:"string",begin:'"',end:'"',
+illegal:"\\n",contains:[m]},E={
+begin:/\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\b/
+},v=(e,t,n={})=>{const s=a({className:"comment",begin:e,end:t,contains:[]},n)
+;return s.contains.push(E),s.contains.push({className:"doctag",
+begin:"(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",relevance:0}),s
+},w=v("//","$"),N=v("/\\*","\\*/"),y=v("#","$");var R=Object.freeze({
+__proto__:null,MATCH_NOTHING_RE:/\b\B/,IDENT_RE:g,UNDERSCORE_IDENT_RE:d,
+NUMBER_RE:h,C_NUMBER_RE:f,BINARY_NUMBER_RE:p,
+RE_STARTERS_RE:"!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~",
+SHEBANG:(e={})=>{const t=/^#![ ]*\//
+;return e.binary&&(e.begin=((...e)=>e.map((e=>u(e))).join(""))(t,/.*\b/,e.binary,/\b.*/)),
+a({className:"meta",begin:t,end:/$/,relevance:0,"on:begin":(e,t)=>{
+0!==e.index&&t.ignoreMatch()}},e)},BACKSLASH_ESCAPE:m,APOS_STRING_MODE:b,
+QUOTE_STRING_MODE:x,PHRASAL_WORDS_MODE:E,COMMENT:v,C_LINE_COMMENT_MODE:w,
+C_BLOCK_COMMENT_MODE:N,HASH_COMMENT_MODE:y,NUMBER_MODE:{className:"number",
+begin:h,relevance:0},C_NUMBER_MODE:{className:"number",begin:f,relevance:0},
+BINARY_NUMBER_MODE:{className:"number",begin:p,relevance:0},CSS_NUMBER_MODE:{
+className:"number",
+begin:h+"(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",
+relevance:0},REGEXP_MODE:{begin:/(?=\/[^/\n]*\/)/,contains:[{className:"regexp",
+begin:/\//,end:/\/[gimuy]*/,illegal:/\n/,contains:[m,{begin:/\[/,end:/\]/,
+relevance:0,contains:[m]}]}]},TITLE_MODE:{className:"title",begin:g,relevance:0
+},UNDERSCORE_TITLE_MODE:{className:"title",begin:d,relevance:0},METHOD_GUARD:{
+begin:"\\.\\s*[a-zA-Z_]\\w*",relevance:0},END_SAME_AS_BEGIN:e=>Object.assign(e,{
+"on:begin":(e,t)=>{t.data._beginMatch=e[1]},"on:end":(e,t)=>{
+t.data._beginMatch!==e[1]&&t.ignoreMatch()}})});function _(e,t){
+"."===e.input[e.index-1]&&t.ignoreMatch()}function k(e,t){
+t&&e.beginKeywords&&(e.begin="\\b("+e.beginKeywords.split(" ").join("|")+")(?!\\.)(?=\\b|\\s)",
+e.__beforeBegin=_,e.keywords=e.keywords||e.beginKeywords,delete e.beginKeywords,
+void 0===e.relevance&&(e.relevance=0))}function O(e,t){
+Array.isArray(e.illegal)&&(e.illegal=((...e)=>"("+e.map((e=>u(e))).join("|")+")")(...e.illegal))
+}function M(e,t){if(e.match){
+if(e.begin||e.end)throw Error("begin & end are not supported with match")
+;e.begin=e.match,delete e.match}}function A(e,t){
+void 0===e.relevance&&(e.relevance=1)}
+const L=["of","and","for","in","not","or","if","then","parent","list","value"]
+;function B(e,t,n="keyword"){const s={}
+;return"string"==typeof e?r(n,e.split(" ")):Array.isArray(e)?r(n,e):Object.keys(e).forEach((n=>{
+Object.assign(s,B(e[n],t,n))})),s;function r(e,n){
+t&&(n=n.map((e=>e.toLowerCase()))),n.forEach((t=>{const n=t.split("|")
+;s[n[0]]=[e,I(n[0],n[1])]}))}}function I(e,t){
+return t?Number(t):(e=>L.includes(e.toLowerCase()))(e)?0:1}
+function T(e,{plugins:t}){function n(t,n){
+return RegExp(u(t),"m"+(e.case_insensitive?"i":"")+(n?"g":""))}class s{
+constructor(){
+this.matchIndexes={},this.regexes=[],this.matchAt=1,this.position=0}
+addRule(e,t){
+t.position=this.position++,this.matchIndexes[this.matchAt]=t,this.regexes.push([t,e]),
+this.matchAt+=(e=>RegExp(e.toString()+"|").exec("").length-1)(e)+1}compile(){
+0===this.regexes.length&&(this.exec=()=>null)
+;const e=this.regexes.map((e=>e[1]));this.matcherRe=n(((e,t="|")=>{
+const n=/\[(?:[^\\\]]|\\.)*\]|\(\??|\\([1-9][0-9]*)|\\./;let s=0,r=""
+;for(let a=0;a<e.length;a++){s+=1;const i=s;let o=u(e[a])
+;for(a>0&&(r+=t),r+="(";o.length>0;){const e=n.exec(o);if(null==e){r+=o;break}
+r+=o.substring(0,e.index),
+o=o.substring(e.index+e[0].length),"\\"===e[0][0]&&e[1]?r+="\\"+(Number(e[1])+i):(r+=e[0],
+"("===e[0]&&s++)}r+=")"}return r})(e),!0),this.lastIndex=0}exec(e){
+this.matcherRe.lastIndex=this.lastIndex;const t=this.matcherRe.exec(e)
+;if(!t)return null
+;const n=t.findIndex(((e,t)=>t>0&&void 0!==e)),s=this.matchIndexes[n]
+;return t.splice(0,n),Object.assign(t,s)}}class r{constructor(){
+this.rules=[],this.multiRegexes=[],
+this.count=0,this.lastIndex=0,this.regexIndex=0}getMatcher(e){
+if(this.multiRegexes[e])return this.multiRegexes[e];const t=new s
+;return this.rules.slice(e).forEach((([e,n])=>t.addRule(e,n))),
+t.compile(),this.multiRegexes[e]=t,t}resumingScanAtSamePosition(){
+return 0!==this.regexIndex}considerAll(){this.regexIndex=0}addRule(e,t){
+this.rules.push([e,t]),"begin"===t.type&&this.count++}exec(e){
+const t=this.getMatcher(this.regexIndex);t.lastIndex=this.lastIndex
+;let n=t.exec(e)
+;if(this.resumingScanAtSamePosition())if(n&&n.index===this.lastIndex);else{
+const t=this.getMatcher(0);t.lastIndex=this.lastIndex+1,n=t.exec(e)}
+return n&&(this.regexIndex+=n.position+1,
+this.regexIndex===this.count&&this.considerAll()),n}}
+if(e.compilerExtensions||(e.compilerExtensions=[]),
+e.contains&&e.contains.includes("self"))throw Error("ERR: contains `self` is not supported at the top-level of a language.  See documentation.")
+;return e.classNameAliases=a(e.classNameAliases||{}),function t(s,i){const o=s
+;if(s.compiled)return o
+;[M].forEach((e=>e(s,i))),e.compilerExtensions.forEach((e=>e(s,i))),
+s.__beforeBegin=null,[k,O,A].forEach((e=>e(s,i))),s.compiled=!0;let l=null
+;if("object"==typeof s.keywords&&(l=s.keywords.$pattern,
+delete s.keywords.$pattern),
+s.keywords&&(s.keywords=B(s.keywords,e.case_insensitive)),
+s.lexemes&&l)throw Error("ERR: Prefer `keywords.$pattern` to `mode.lexemes`, BOTH are not allowed. (see mode reference) ")
+;return l=l||s.lexemes||/\w+/,
+o.keywordPatternRe=n(l,!0),i&&(s.begin||(s.begin=/\B|\b/),
+o.beginRe=n(s.begin),s.endSameAsBegin&&(s.end=s.begin),
+s.end||s.endsWithParent||(s.end=/\B|\b/),
+s.end&&(o.endRe=n(s.end)),o.terminatorEnd=u(s.end)||"",
+s.endsWithParent&&i.terminatorEnd&&(o.terminatorEnd+=(s.end?"|":"")+i.terminatorEnd)),
+s.illegal&&(o.illegalRe=n(s.illegal)),
+s.contains||(s.contains=[]),s.contains=[].concat(...s.contains.map((e=>(e=>(e.variants&&!e.cachedVariants&&(e.cachedVariants=e.variants.map((t=>a(e,{
+variants:null},t)))),e.cachedVariants?e.cachedVariants:j(e)?a(e,{
+starts:e.starts?a(e.starts):null
+}):Object.isFrozen(e)?a(e):e))("self"===e?s:e)))),s.contains.forEach((e=>{t(e,o)
+})),s.starts&&t(s.starts,i),o.matcher=(e=>{const t=new r
+;return e.contains.forEach((e=>t.addRule(e.begin,{rule:e,type:"begin"
+}))),e.terminatorEnd&&t.addRule(e.terminatorEnd,{type:"end"
+}),e.illegal&&t.addRule(e.illegal,{type:"illegal"}),t})(o),o}(e)}function j(e){
+return!!e&&(e.endsWithParent||j(e.starts))}function S(e){const t={
+props:["language","code","autodetect"],data:()=>({detectedLanguage:"",
+unknownLanguage:!1}),computed:{className(){
+return this.unknownLanguage?"":"hljs "+this.detectedLanguage},highlighted(){
+if(!this.autoDetect&&!e.getLanguage(this.language))return console.warn(`The language "${this.language}" you specified could not be found.`),
+this.unknownLanguage=!0,r(this.code);let t={}
+;return this.autoDetect?(t=e.highlightAuto(this.code),
+this.detectedLanguage=t.language):(t=e.highlight(this.language,this.code,this.ignoreIllegals),
+this.detectedLanguage=this.language),t.value},autoDetect(){
+return!(this.language&&(e=this.autodetect,!e&&""!==e));var e},
+ignoreIllegals:()=>!0},render(e){return e("pre",{},[e("code",{
+class:this.className,domProps:{innerHTML:this.highlighted}})])}};return{
+Component:t,VuePlugin:{install(e){e.component("highlightjs",t)}}}}const P={
+"after:highlightBlock":({block:e,result:t,text:n})=>{const s=C(e)
+;if(!s.length)return;const a=document.createElement("div")
+;a.innerHTML=t.value,t.value=((e,t,n)=>{let s=0,a="";const i=[];function o(){
+return e.length&&t.length?e[0].offset!==t[0].offset?e[0].offset<t[0].offset?e:t:"start"===t[0].event?e:t:e.length?e:t
+}function l(e){a+="<"+D(e)+[].map.call(e.attributes,(function(e){
+return" "+e.nodeName+'="'+r(e.value)+'"'})).join("")+">"}function c(e){
+a+="</"+D(e)+">"}function u(e){("start"===e.event?l:c)(e.node)}
+for(;e.length||t.length;){let t=o()
+;if(a+=r(n.substring(s,t[0].offset)),s=t[0].offset,t===e){i.reverse().forEach(c)
+;do{u(t.splice(0,1)[0]),t=o()}while(t===e&&t.length&&t[0].offset===s)
+;i.reverse().forEach(l)
+}else"start"===t[0].event?i.push(t[0].node):i.pop(),u(t.splice(0,1)[0])}
+return a+r(n.substr(s))})(s,C(a),n)}};function D(e){
+return e.nodeName.toLowerCase()}function C(e){const t=[];return function e(n,s){
+for(let r=n.firstChild;r;r=r.nextSibling)3===r.nodeType?s+=r.nodeValue.length:1===r.nodeType&&(t.push({
+event:"start",offset:s,node:r}),s=e(r,s),D(r).match(/br|hr|img|input/)||t.push({
+event:"stop",offset:s,node:r}));return s}(e,0),t}const H=e=>{console.error(e)
+},U=(e,...t)=>{console.log("WARN: "+e,...t)},$=(e,t)=>{
+console.log(`Deprecated as of ${e}. ${t}`)},z=r,K=a,G=Symbol("nomatch")
+;return(e=>{const n=Object.create(null),r=Object.create(null),a=[];let i=!0
+;const o=/(^(<[^>]+>|\t|)+|\n)/gm,l="Could not find the language '{}', did you forget to load/include a language module?",u={
+disableAutodetect:!0,name:"Plain text",contains:[]};let g={
+noHighlightRe:/^(no-?highlight)$/i,
+languageDetectRe:/\blang(?:uage)?-([\w-]+)\b/i,classPrefix:"hljs-",
+tabReplace:null,useBR:!1,languages:null,__emitter:c};function d(e){
+return g.noHighlightRe.test(e)}function h(e,t,n,s){const r={code:t,language:e}
+;M("before:highlight",r);const a=r.result?r.result:f(r.language,r.code,n,s)
+;return a.code=r.code,M("after:highlight",a),a}function f(e,t,r,o){const c=t
+;function u(e,t){const n=w.case_insensitive?t[0].toLowerCase():t[0]
+;return Object.prototype.hasOwnProperty.call(e.keywords,n)&&e.keywords[n]}
+function d(){null!=R.subLanguage?(()=>{if(""===M)return;let e=null
+;if("string"==typeof R.subLanguage){
+if(!n[R.subLanguage])return void O.addText(M)
+;e=f(R.subLanguage,M,!0,k[R.subLanguage]),k[R.subLanguage]=e.top
+}else e=p(M,R.subLanguage.length?R.subLanguage:null)
+;R.relevance>0&&(A+=e.relevance),O.addSublanguage(e.emitter,e.language)
+})():(()=>{if(!R.keywords)return void O.addText(M);let e=0
+;R.keywordPatternRe.lastIndex=0;let t=R.keywordPatternRe.exec(M),n="";for(;t;){
+n+=M.substring(e,t.index);const s=u(R,t);if(s){const[e,r]=s
+;O.addText(n),n="",A+=r;const a=w.classNameAliases[e]||e;O.addKeyword(t[0],a)
+}else n+=t[0];e=R.keywordPatternRe.lastIndex,t=R.keywordPatternRe.exec(M)}
+n+=M.substr(e),O.addText(n)})(),M=""}function h(e){
+return e.className&&O.openNode(w.classNameAliases[e.className]||e.className),
+R=Object.create(e,{parent:{value:R}}),R}function m(e,t,n){let r=((e,t)=>{
+const n=e&&e.exec(t);return n&&0===n.index})(e.endRe,n);if(r){if(e["on:end"]){
+const n=new s(e);e["on:end"](t,n),n.ignore&&(r=!1)}if(r){
+for(;e.endsParent&&e.parent;)e=e.parent;return e}}
+if(e.endsWithParent)return m(e.parent,t,n)}function b(e){
+return 0===R.matcher.regexIndex?(M+=e[0],1):(I=!0,0)}function x(e){
+const t=e[0],n=c.substr(e.index),s=m(R,e,n);if(!s)return G;const r=R
+;r.skip?M+=t:(r.returnEnd||r.excludeEnd||(M+=t),d(),r.excludeEnd&&(M=t));do{
+R.className&&O.closeNode(),R.skip||R.subLanguage||(A+=R.relevance),R=R.parent
+}while(R!==s.parent)
+;return s.starts&&(s.endSameAsBegin&&(s.starts.endRe=s.endRe),
+h(s.starts)),r.returnEnd?0:t.length}let E={};function v(t,n){const a=n&&n[0]
+;if(M+=t,null==a)return d(),0
+;if("begin"===E.type&&"end"===n.type&&E.index===n.index&&""===a){
+if(M+=c.slice(n.index,n.index+1),!i){const t=Error("0 width match regex")
+;throw t.languageName=e,t.badRule=E.rule,t}return 1}
+if(E=n,"begin"===n.type)return function(e){
+const t=e[0],n=e.rule,r=new s(n),a=[n.__beforeBegin,n["on:begin"]]
+;for(const n of a)if(n&&(n(e,r),r.ignore))return b(t)
+;return n&&n.endSameAsBegin&&(n.endRe=RegExp(t.replace(/[-/\\^$*+?.()|[\]{}]/g,"\\$&"),"m")),
+n.skip?M+=t:(n.excludeBegin&&(M+=t),
+d(),n.returnBegin||n.excludeBegin||(M=t)),h(n),n.returnBegin?0:t.length}(n)
+;if("illegal"===n.type&&!r){
+const e=Error('Illegal lexeme "'+a+'" for mode "'+(R.className||"<unnamed>")+'"')
+;throw e.mode=R,e}if("end"===n.type){const e=x(n);if(e!==G)return e}
+if("illegal"===n.type&&""===a)return 1
+;if(B>1e5&&B>3*n.index)throw Error("potential infinite loop, way more iterations than matches")
+;return M+=a,a.length}const w=_(e)
+;if(!w)throw H(l.replace("{}",e)),Error('Unknown language: "'+e+'"')
+;const N=T(w,{plugins:a});let y="",R=o||N;const k={},O=new g.__emitter(g);(()=>{
+const e=[];for(let t=R;t!==w;t=t.parent)t.className&&e.unshift(t.className)
+;e.forEach((e=>O.openNode(e)))})();let M="",A=0,L=0,B=0,I=!1;try{
+for(R.matcher.considerAll();;){
+B++,I?I=!1:R.matcher.considerAll(),R.matcher.lastIndex=L
+;const e=R.matcher.exec(c);if(!e)break;const t=v(c.substring(L,e.index),e)
+;L=e.index+t}return v(c.substr(L)),O.closeAllNodes(),O.finalize(),y=O.toHTML(),{
+relevance:Math.floor(A),value:y,language:e,illegal:!1,emitter:O,top:R}}catch(t){
+if(t.message&&t.message.includes("Illegal"))return{illegal:!0,illegalBy:{
+msg:t.message,context:c.slice(L-100,L+100),mode:t.mode},sofar:y,relevance:0,
+value:z(c),emitter:O};if(i)return{illegal:!1,relevance:0,value:z(c),emitter:O,
+language:e,top:R,errorRaised:t};throw t}}function p(e,t){
+t=t||g.languages||Object.keys(n);const s=(e=>{const t={relevance:0,
+emitter:new g.__emitter(g),value:z(e),illegal:!1,top:u}
+;return t.emitter.addText(e),t})(e),r=t.filter(_).filter(O).map((t=>f(t,e,!1)))
+;r.unshift(s);const a=r.sort(((e,t)=>{
+if(e.relevance!==t.relevance)return t.relevance-e.relevance
+;if(e.language&&t.language){if(_(e.language).supersetOf===t.language)return 1
+;if(_(t.language).supersetOf===e.language)return-1}return 0})),[i,o]=a,l=i
+;return l.second_best=o,l}const m={"before:highlightBlock":({block:e})=>{
+g.useBR&&(e.innerHTML=e.innerHTML.replace(/\n/g,"").replace(/<br[ /]*>/g,"\n"))
+},"after:highlightBlock":({result:e})=>{
+g.useBR&&(e.value=e.value.replace(/\n/g,"<br>"))}},b=/^(<[^>]+>|\t)+/gm,x={
+"after:highlightBlock":({result:e})=>{
+g.tabReplace&&(e.value=e.value.replace(b,(e=>e.replace(/\t/g,g.tabReplace))))}}
+;function E(e){let t=null;const n=(e=>{let t=e.className+" "
+;t+=e.parentNode?e.parentNode.className:"";const n=g.languageDetectRe.exec(t)
+;if(n){const t=_(n[1])
+;return t||(U(l.replace("{}",n[1])),U("Falling back to no-highlight mode for this block.",e)),
+t?n[1]:"no-highlight"}return t.split(/\s+/).find((e=>d(e)||_(e)))})(e)
+;if(d(n))return;M("before:highlightBlock",{block:e,language:n}),t=e
+;const s=t.textContent,a=n?h(n,s,!0):p(s);M("after:highlightBlock",{block:e,
+result:a,text:s}),e.innerHTML=a.value,((e,t,n)=>{const s=t?r[t]:n
+;e.classList.add("hljs"),s&&e.classList.add(s)})(e,n,a.language),e.result={
+language:a.language,re:a.relevance,relavance:a.relevance
+},a.second_best&&(e.second_best={language:a.second_best.language,
+re:a.second_best.relevance,relavance:a.second_best.relevance})}const v=()=>{
+v.called||(v.called=!0,
+$("10.6.0","initHighlighting() is deprecated.  Use highlightAll() instead."),
+document.querySelectorAll("pre code").forEach(E))};let w=!1,N=!1;function y(){
+N?document.querySelectorAll("pre code").forEach(E):w=!0}function _(e){
+return e=(e||"").toLowerCase(),n[e]||n[r[e]]}function k(e,{languageName:t}){
+"string"==typeof e&&(e=[e]),e.forEach((e=>{r[e]=t}))}function O(e){const t=_(e)
+;return t&&!t.disableAutodetect}function M(e,t){const n=e;a.forEach((e=>{
+e[n]&&e[n](t)}))}
+"undefined"!=typeof window&&window.addEventListener&&window.addEventListener("DOMContentLoaded",(()=>{
+N=!0,w&&y()}),!1),Object.assign(e,{highlight:h,highlightAuto:p,highlightAll:y,
+fixMarkup:e=>{
+return $("10.2.0","fixMarkup will be removed entirely in v11.0"),$("10.2.0","Please see https://github.com/highlightjs/highlight.js/issues/2534"),
+t=e,
+g.tabReplace||g.useBR?t.replace(o,(e=>"\n"===e?g.useBR?"<br>":e:g.tabReplace?e.replace(/\t/g,g.tabReplace):e)):t
+;var t},highlightBlock:E,configure:e=>{
+e.useBR&&($("10.3.0","'useBR' will be removed entirely in v11.0"),
+$("10.3.0","Please see https://github.com/highlightjs/highlight.js/issues/2559")),
+g=K(g,e)},initHighlighting:v,initHighlightingOnLoad:()=>{
+$("10.6.0","initHighlightingOnLoad() is deprecated.  Use highlightAll() instead."),
+w=!0},registerLanguage:(t,s)=>{let r=null;try{r=s(e)}catch(e){
+if(H("Language definition for '{}' could not be registered.".replace("{}",t)),
+!i)throw e;H(e),r=u}
+r.name||(r.name=t),n[t]=r,r.rawDefinition=s.bind(null,e),r.aliases&&k(r.aliases,{
+languageName:t})},listLanguages:()=>Object.keys(n),getLanguage:_,
+registerAliases:k,requireLanguage:e=>{
+$("10.4.0","requireLanguage will be removed entirely in v11."),
+$("10.4.0","Please see https://github.com/highlightjs/highlight.js/pull/2844")
+;const t=_(e);if(t)return t
+;throw Error("The '{}' language is required, but not loaded.".replace("{}",e))},
+autoDetection:O,inherit:K,addPlugin:e=>{a.push(e)},vuePlugin:S(e).VuePlugin
+}),e.debugMode=()=>{i=!1},e.safeMode=()=>{i=!0},e.versionString="10.6.0"
+;for(const e in R)"object"==typeof R[e]&&t(R[e])
+;return Object.assign(e,R),e.addPlugin(m),e.addPlugin(P),e.addPlugin(x),e})({})
+}();"object"==typeof exports&&"undefined"!=typeof module&&(module.exports=hljs);hljs.registerLanguage("http",(()=>{"use strict";function e(...e){
+return e.map((e=>{return(n=e)?"string"==typeof n?n:n.source:null;var n
+})).join("")}return n=>{const a="HTTP/(2|1\\.[01])",s=[{className:"attribute",
+begin:e("^",/[A-Za-z][A-Za-z0-9-]*/,"(?=\\:\\s)"),starts:{contains:[{
+className:"punctuation",begin:/: /,relevance:0,starts:{end:"$",relevance:0}}]}
+},{begin:"\\n\\n",starts:{subLanguage:[],endsWithParent:!0}}];return{
+name:"HTTP",aliases:["https"],illegal:/\S/,contains:[{begin:"^(?="+a+" \\d{3})",
+end:/$/,contains:[{className:"meta",begin:a},{className:"number",
+begin:"\\b\\d{3}\\b"}],starts:{end:/\b\B/,illegal:/\S/,contains:s}},{
+begin:"(?=^[A-Z]+ (.*?) "+a+"$)",end:/$/,contains:[{className:"string",
+begin:" ",end:" ",excludeBegin:!0,excludeEnd:!0},{className:"meta",begin:a},{
+className:"keyword",begin:"[A-Z]+"}],starts:{end:/\b\B/,illegal:/\S/,contains:s}
+}]}}})());hljs.registerLanguage("xml",(()=>{"use strict";function e(e){
+return e?"string"==typeof e?e:e.source:null}function n(e){return a("(?=",e,")")}
+function a(...n){return n.map((n=>e(n))).join("")}function s(...n){
+return"("+n.map((n=>e(n))).join("|")+")"}return e=>{
+const t=a(/[A-Z_]/,a("(",/[A-Z0-9_.-]*:/,")?"),/[A-Z0-9_.-]*/),i={
+className:"symbol",begin:/&[a-z]+;|&#[0-9]+;|&#x[a-f0-9]+;/},r={begin:/\s/,
+contains:[{className:"meta-keyword",begin:/#?[a-z_][a-z1-9_-]+/,illegal:/\n/}]
+},c=e.inherit(r,{begin:/\(/,end:/\)/}),l=e.inherit(e.APOS_STRING_MODE,{
+className:"meta-string"}),g=e.inherit(e.QUOTE_STRING_MODE,{
+className:"meta-string"}),m={endsWithParent:!0,illegal:/</,relevance:0,
+contains:[{className:"attr",begin:/[A-Za-z0-9._:-]+/,relevance:0},{begin:/=\s*/,
+relevance:0,contains:[{className:"string",endsParent:!0,variants:[{begin:/"/,
+end:/"/,contains:[i]},{begin:/'/,end:/'/,contains:[i]},{begin:/[^\s"'=<>`]+/}]}]
+}]};return{name:"HTML, XML",
+aliases:["html","xhtml","rss","atom","xjb","xsd","xsl","plist","wsf","svg"],
+case_insensitive:!0,contains:[{className:"meta",begin:/<![a-z]/,end:/>/,
+relevance:10,contains:[r,g,l,c,{begin:/\[/,end:/\]/,contains:[{className:"meta",
+begin:/<![a-z]/,end:/>/,contains:[r,c,g,l]}]}]},e.COMMENT(/<!--/,/-->/,{
+relevance:10}),{begin:/<!\[CDATA\[/,end:/\]\]>/,relevance:10},i,{
+className:"meta",begin:/<\?xml/,end:/\?>/,relevance:10},{className:"tag",
+begin:/<style(?=\s|>)/,end:/>/,keywords:{name:"style"},contains:[m],starts:{
+end:/<\/style>/,returnEnd:!0,subLanguage:["css","xml"]}},{className:"tag",
+begin:/<script(?=\s|>)/,end:/>/,keywords:{name:"script"},contains:[m],starts:{
+end:/<\/script>/,returnEnd:!0,subLanguage:["javascript","handlebars","xml"]}},{
+className:"tag",begin:/<>|<\/>/},{className:"tag",
+begin:a(/</,n(a(t,s(/\/>/,/>/,/\s/)))),end:/\/?>/,contains:[{className:"name",
+begin:t,relevance:0,starts:m}]},{className:"tag",begin:a(/<\//,n(a(t,/>/))),
+contains:[{className:"name",begin:t,relevance:0},{begin:/>/,relevance:0}]}]}}
+})());hljs.registerLanguage("twig",(()=>{"use strict";return e=>{
+var a="attribute block constant cycle date dump include max min parent random range source template_from_string",n={
+beginKeywords:a,keywords:{name:a},relevance:0,contains:[{className:"params",
+begin:"\\(",end:"\\)"}]},t={begin:/\|[A-Za-z_]+:?/,
+keywords:"abs batch capitalize column convert_encoding date date_modify default escape filter first format inky_to_html inline_css join json_encode keys last length lower map markdown merge nl2br number_format raw reduce replace reverse round slice sort spaceless split striptags title trim upper url_encode",
+contains:[n]
+},s="apply autoescape block deprecated do embed extends filter flush for from if import include macro sandbox set use verbatim with"
+;return s=s+" "+s.split(" ").map((e=>"end"+e)).join(" "),{name:"Twig",
+aliases:["craftcms"],case_insensitive:!0,subLanguage:"xml",
+contains:[e.COMMENT(/\{#/,/#\}/),{className:"template-tag",begin:/\{%/,
+end:/%\}/,contains:[{className:"name",begin:/\w+/,keywords:s,starts:{
+endsWithParent:!0,contains:[t,n],relevance:0}}]},{className:"template-variable",
+begin:/\{\{/,end:/\}\}/,contains:["self",t,n]}]}}})());hljs.registerLanguage("php",(()=>{"use strict";return e=>{const r={
+className:"variable",
+begin:"\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(?![A-Za-z0-9])(?![$])"},t={
+className:"meta",variants:[{begin:/<\?php/,relevance:10},{begin:/<\?[=]?/},{
+begin:/\?>/}]},a={className:"subst",variants:[{begin:/\$\w+/},{begin:/\{\$/,
+end:/\}/}]},n=e.inherit(e.APOS_STRING_MODE,{illegal:null
+}),i=e.inherit(e.QUOTE_STRING_MODE,{illegal:null,
+contains:e.QUOTE_STRING_MODE.contains.concat(a)}),o=e.END_SAME_AS_BEGIN({
+begin:/<<<[ \t]*(\w+)\n/,end:/[ \t]*(\w+)\b/,
+contains:e.QUOTE_STRING_MODE.contains.concat(a)}),l={className:"string",
+contains:[e.BACKSLASH_ESCAPE,t],variants:[e.inherit(n,{begin:"b'",end:"'"
+}),e.inherit(i,{begin:'b"',end:'"'}),i,n,o]},c={
+variants:[e.BINARY_NUMBER_MODE,e.C_NUMBER_MODE]},s={
+keyword:"__CLASS__ __DIR__ __FILE__ __FUNCTION__ __LINE__ __METHOD__ __NAMESPACE__ __TRAIT__ die echo exit include include_once print require require_once array abstract and as binary bool boolean break callable case catch class clone const continue declare default do double else elseif empty enddeclare endfor endforeach endif endswitch endwhile eval extends final finally float for foreach from global goto if implements instanceof insteadof int integer interface isset iterable list match|0 new object or private protected public real return string switch throw trait try unset use var void while xor yield",
+literal:"false null true",
+built_in:"Error|0 AppendIterator ArgumentCountError ArithmeticError ArrayIterator ArrayObject AssertionError BadFunctionCallException BadMethodCallException CachingIterator CallbackFilterIterator CompileError Countable DirectoryIterator DivisionByZeroError DomainException EmptyIterator ErrorException Exception FilesystemIterator FilterIterator GlobIterator InfiniteIterator InvalidArgumentException IteratorIterator LengthException LimitIterator LogicException MultipleIterator NoRewindIterator OutOfBoundsException OutOfRangeException OuterIterator OverflowException ParentIterator ParseError RangeException RecursiveArrayIterator RecursiveCachingIterator RecursiveCallbackFilterIterator RecursiveDirectoryIterator RecursiveFilterIterator RecursiveIterator RecursiveIteratorIterator RecursiveRegexIterator RecursiveTreeIterator RegexIterator RuntimeException SeekableIterator SplDoublyLinkedList SplFileInfo SplFileObject SplFixedArray SplHeap SplMaxHeap SplMinHeap SplObjectStorage SplObserver SplObserver SplPriorityQueue SplQueue SplStack SplSubject SplSubject SplTempFileObject TypeError UnderflowException UnexpectedValueException ArrayAccess Closure Generator Iterator IteratorAggregate Serializable Throwable Traversable WeakReference Directory __PHP_Incomplete_Class parent php_user_filter self static stdClass"
+};return{aliases:["php","php3","php4","php5","php6","php7","php8"],
+case_insensitive:!0,keywords:s,
+contains:[e.HASH_COMMENT_MODE,e.COMMENT("//","$",{contains:[t]
+}),e.COMMENT("/\\*","\\*/",{contains:[{className:"doctag",begin:"@[A-Za-z]+"}]
+}),e.COMMENT("__halt_compiler.+?;",!1,{endsWithParent:!0,
+keywords:"__halt_compiler"}),t,{className:"keyword",begin:/\$this\b/},r,{
+begin:/(::|->)+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/},{className:"function",
+relevance:0,beginKeywords:"fn function",end:/[;{]/,excludeEnd:!0,
+illegal:"[$%\\[]",contains:[e.UNDERSCORE_TITLE_MODE,{begin:"=>"},{
+className:"params",begin:"\\(",end:"\\)",excludeBegin:!0,excludeEnd:!0,
+keywords:s,contains:["self",r,e.C_BLOCK_COMMENT_MODE,l,c]}]},{className:"class",
+beginKeywords:"class interface",relevance:0,end:/\{/,excludeEnd:!0,
+illegal:/[:($"]/,contains:[{beginKeywords:"extends implements"
+},e.UNDERSCORE_TITLE_MODE]},{beginKeywords:"namespace",relevance:0,end:";",
+illegal:/[.']/,contains:[e.UNDERSCORE_TITLE_MODE]},{beginKeywords:"use",
+relevance:0,end:";",contains:[e.UNDERSCORE_TITLE_MODE]},l,c]}}})());hljs.registerLanguage("php-template",(()=>{"use strict";return n=>({
+name:"PHP template",subLanguage:"xml",contains:[{begin:/<\?(php|=)?/,end:/\?>/,
+subLanguage:"php",contains:[{begin:"/\\*",end:"\\*/",skip:!0},{begin:'b"',
+end:'"',skip:!0},{begin:"b'",end:"'",skip:!0},n.inherit(n.APOS_STRING_MODE,{
+illegal:null,className:null,contains:null,skip:!0
+}),n.inherit(n.QUOTE_STRING_MODE,{illegal:null,className:null,contains:null,
+skip:!0})]}]})})());hljs.registerLanguage("sql",(()=>{"use strict";function e(e){
+return e?"string"==typeof e?e:e.source:null}function r(...r){
+return r.map((r=>e(r))).join("")}function t(...r){
+return"("+r.map((r=>e(r))).join("|")+")"}return e=>{
+const n=e.COMMENT("--","$"),a=["true","false","unknown"],i=["bigint","binary","blob","boolean","char","character","clob","date","dec","decfloat","decimal","float","int","integer","interval","nchar","nclob","national","numeric","real","row","smallint","time","timestamp","varchar","varying","varbinary"],s=["abs","acos","array_agg","asin","atan","avg","cast","ceil","ceiling","coalesce","corr","cos","cosh","count","covar_pop","covar_samp","cume_dist","dense_rank","deref","element","exp","extract","first_value","floor","json_array","json_arrayagg","json_exists","json_object","json_objectagg","json_query","json_table","json_table_primitive","json_value","lag","last_value","lead","listagg","ln","log","log10","lower","max","min","mod","nth_value","ntile","nullif","percent_rank","percentile_cont","percentile_disc","position","position_regex","power","rank","regr_avgx","regr_avgy","regr_count","regr_intercept","regr_r2","regr_slope","regr_sxx","regr_sxy","regr_syy","row_number","sin","sinh","sqrt","stddev_pop","stddev_samp","substring","substring_regex","sum","tan","tanh","translate","translate_regex","treat","trim","trim_array","unnest","upper","value_of","var_pop","var_samp","width_bucket"],o=["create table","insert into","primary key","foreign key","not null","alter table","add constraint","grouping sets","on overflow","character set","respect nulls","ignore nulls","nulls first","nulls last","depth first","breadth first"],c=s,l=["abs","acos","all","allocate","alter","and","any","are","array","array_agg","array_max_cardinality","as","asensitive","asin","asymmetric","at","atan","atomic","authorization","avg","begin","begin_frame","begin_partition","between","bigint","binary","blob","boolean","both","by","call","called","cardinality","cascaded","case","cast","ceil","ceiling","char","char_length","character","character_length","check","classifier","clob","close","coalesce","collate","collect","column","commit","condition","connect","constraint","contains","convert","copy","corr","corresponding","cos","cosh","count","covar_pop","covar_samp","create","cross","cube","cume_dist","current","current_catalog","current_date","current_default_transform_group","current_path","current_role","current_row","current_schema","current_time","current_timestamp","current_path","current_role","current_transform_group_for_type","current_user","cursor","cycle","date","day","deallocate","dec","decimal","decfloat","declare","default","define","delete","dense_rank","deref","describe","deterministic","disconnect","distinct","double","drop","dynamic","each","element","else","empty","end","end_frame","end_partition","end-exec","equals","escape","every","except","exec","execute","exists","exp","external","extract","false","fetch","filter","first_value","float","floor","for","foreign","frame_row","free","from","full","function","fusion","get","global","grant","group","grouping","groups","having","hold","hour","identity","in","indicator","initial","inner","inout","insensitive","insert","int","integer","intersect","intersection","interval","into","is","join","json_array","json_arrayagg","json_exists","json_object","json_objectagg","json_query","json_table","json_table_primitive","json_value","lag","language","large","last_value","lateral","lead","leading","left","like","like_regex","listagg","ln","local","localtime","localtimestamp","log","log10","lower","match","match_number","match_recognize","matches","max","member","merge","method","min","minute","mod","modifies","module","month","multiset","national","natural","nchar","nclob","new","no","none","normalize","not","nth_value","ntile","null","nullif","numeric","octet_length","occurrences_regex","of","offset","old","omit","on","one","only","open","or","order","out","outer","over","overlaps","overlay","parameter","partition","pattern","per","percent","percent_rank","percentile_cont","percentile_disc","period","portion","position","position_regex","power","precedes","precision","prepare","primary","procedure","ptf","range","rank","reads","real","recursive","ref","references","referencing","regr_avgx","regr_avgy","regr_count","regr_intercept","regr_r2","regr_slope","regr_sxx","regr_sxy","regr_syy","release","result","return","returns","revoke","right","rollback","rollup","row","row_number","rows","running","savepoint","scope","scroll","search","second","seek","select","sensitive","session_user","set","show","similar","sin","sinh","skip","smallint","some","specific","specifictype","sql","sqlexception","sqlstate","sqlwarning","sqrt","start","static","stddev_pop","stddev_samp","submultiset","subset","substring","substring_regex","succeeds","sum","symmetric","system","system_time","system_user","table","tablesample","tan","tanh","then","time","timestamp","timezone_hour","timezone_minute","to","trailing","translate","translate_regex","translation","treat","trigger","trim","trim_array","true","truncate","uescape","union","unique","unknown","unnest","update   ","upper","user","using","value","values","value_of","var_pop","var_samp","varbinary","varchar","varying","versioning","when","whenever","where","width_bucket","window","with","within","without","year","add","asc","collation","desc","final","first","last","view"].filter((e=>!s.includes(e))),u={
+begin:r(/\b/,t(...c),/\s*\(/),keywords:{built_in:c}};return{name:"SQL",
+case_insensitive:!0,illegal:/[{}]|<\//,keywords:{$pattern:/\b[\w\.]+/,
+keyword:((e,{exceptions:r,when:t}={})=>{const n=t
+;return r=r||[],e.map((e=>e.match(/\|\d+$/)||r.includes(e)?e:n(e)?e+"|0":e))
+})(l,{when:e=>e.length<3}),literal:a,type:i,
+built_in:["current_catalog","current_date","current_default_transform_group","current_path","current_role","current_schema","current_transform_group_for_type","current_user","session_user","system_time","system_user","current_time","localtime","current_timestamp","localtimestamp"]
+},contains:[{begin:t(...o),keywords:{$pattern:/[\w\.]+/,keyword:l.concat(o),
+literal:a,type:i}},{className:"type",
+begin:t("double precision","large object","with timezone","without timezone")
+},u,{className:"variable",begin:/@[a-z0-9]+/},{className:"string",variants:[{
+begin:/'/,end:/'/,contains:[{begin:/''/}]}]},{begin:/"/,end:/"/,contains:[{
+begin:/""/}]},e.C_NUMBER_MODE,e.C_BLOCK_COMMENT_MODE,n,{className:"operator",
+begin:/[-+*/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?/,relevance:0}]}}})());hljs.registerLanguage("markdown",(()=>{"use strict";function n(...n){
+return n.map((n=>{return(e=n)?"string"==typeof e?e:e.source:null;var e
+})).join("")}return e=>{const a={begin:/<\/?[A-Za-z_]/,end:">",
+subLanguage:"xml",relevance:0},i={variants:[{begin:/\[.+?\]\[.*?\]/,relevance:0
+},{begin:/\[.+?\]\(((data|javascript|mailto):|(?:http|ftp)s?:\/\/).*?\)/,
+relevance:2},{begin:n(/\[.+?\]\(/,/[A-Za-z][A-Za-z0-9+.-]*/,/:\/\/.*?\)/),
+relevance:2},{begin:/\[.+?\]\([./?&#].*?\)/,relevance:1},{
+begin:/\[.+?\]\(.*?\)/,relevance:0}],returnBegin:!0,contains:[{
+className:"string",relevance:0,begin:"\\[",end:"\\]",excludeBegin:!0,
+returnEnd:!0},{className:"link",relevance:0,begin:"\\]\\(",end:"\\)",
+excludeBegin:!0,excludeEnd:!0},{className:"symbol",relevance:0,begin:"\\]\\[",
+end:"\\]",excludeBegin:!0,excludeEnd:!0}]},s={className:"strong",contains:[],
+variants:[{begin:/_{2}/,end:/_{2}/},{begin:/\*{2}/,end:/\*{2}/}]},c={
+className:"emphasis",contains:[],variants:[{begin:/\*(?!\*)/,end:/\*/},{
+begin:/_(?!_)/,end:/_/,relevance:0}]};s.contains.push(c),c.contains.push(s)
+;let t=[a,i]
+;return s.contains=s.contains.concat(t),c.contains=c.contains.concat(t),
+t=t.concat(s,c),{name:"Markdown",aliases:["md","mkdown","mkd"],contains:[{
+className:"section",variants:[{begin:"^#{1,6}",end:"$",contains:t},{
+begin:"(?=^.+?\\n[=-]{2,}$)",contains:[{begin:"^[=-]*$"},{begin:"^",end:"\\n",
+contains:t}]}]},a,{className:"bullet",begin:"^[ \t]*([*+-]|(\\d+\\.))(?=\\s+)",
+end:"\\s+",excludeEnd:!0},s,c,{className:"quote",begin:"^>\\s+",contains:t,
+end:"$"},{className:"code",variants:[{begin:"(`{3,})[^`](.|\\n)*?\\1`*[ ]*"},{
+begin:"(~{3,})[^~](.|\\n)*?\\1~*[ ]*"},{begin:"```",end:"```+[ ]*$"},{
+begin:"~~~",end:"~~~+[ ]*$"},{begin:"`.+?`"},{begin:"(?=^( {4}|\\t))",
+contains:[{begin:"^( {4}|\\t)",end:"(\\n)$"}],relevance:0}]},{
+begin:"^[-\\*]{3,}",end:"$"},i,{begin:/^\[[^\n]+\]:/,returnBegin:!0,contains:[{
+className:"symbol",begin:/\[/,end:/\]/,excludeBegin:!0,excludeEnd:!0},{
+className:"link",begin:/:\s*/,end:/$/,excludeBegin:!0}]}]}}})());hljs.registerLanguage("ruby",(()=>{"use strict";function e(...e){
+return e.map((e=>{return(n=e)?"string"==typeof n?n:n.source:null;var n
+})).join("")}return n=>{
+const a="([a-zA-Z_]\\w*[!?=]?|[-+~]@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?)",i={
+keyword:"and then defined module in return redo if BEGIN retry end for self when next until do begin unless END rescue else break undef not super class case require yield alias while ensure elsif or include attr_reader attr_writer attr_accessor __FILE__",
+built_in:"proc lambda",literal:"true false nil"},s={className:"doctag",
+begin:"@[A-Za-z]+"},r={begin:"#<",end:">"},b=[n.COMMENT("#","$",{contains:[s]
+}),n.COMMENT("^=begin","^=end",{contains:[s],relevance:10
+}),n.COMMENT("^__END__","\\n$")],c={className:"subst",begin:/#\{/,end:/\}/,
+keywords:i},t={className:"string",contains:[n.BACKSLASH_ESCAPE,c],variants:[{
+begin:/'/,end:/'/},{begin:/"/,end:/"/},{begin:/`/,end:/`/},{begin:/%[qQwWx]?\(/,
+end:/\)/},{begin:/%[qQwWx]?\[/,end:/\]/},{begin:/%[qQwWx]?\{/,end:/\}/},{
+begin:/%[qQwWx]?</,end:/>/},{begin:/%[qQwWx]?\//,end:/\//},{begin:/%[qQwWx]?%/,
+end:/%/},{begin:/%[qQwWx]?-/,end:/-/},{begin:/%[qQwWx]?\|/,end:/\|/},{
+begin:/\B\?(\\\d{1,3})/},{begin:/\B\?(\\x[A-Fa-f0-9]{1,2})/},{
+begin:/\B\?(\\u\{?[A-Fa-f0-9]{1,6}\}?)/},{
+begin:/\B\?(\\M-\\C-|\\M-\\c|\\c\\M-|\\M-|\\C-\\M-)[\x20-\x7e]/},{
+begin:/\B\?\\(c|C-)[\x20-\x7e]/},{begin:/\B\?\\?\S/},{
+begin:/<<[-~]?'?(\w+)\n(?:[^\n]*\n)*?\s*\1\b/,returnBegin:!0,contains:[{
+begin:/<<[-~]?'?/},n.END_SAME_AS_BEGIN({begin:/(\w+)/,end:/(\w+)/,
+contains:[n.BACKSLASH_ESCAPE,c]})]}]},g="[0-9](_?[0-9])*",d={className:"number",
+relevance:0,variants:[{
+begin:`\\b([1-9](_?[0-9])*|0)(\\.(${g}))?([eE][+-]?(${g})|r)?i?\\b`},{
+begin:"\\b0[dD][0-9](_?[0-9])*r?i?\\b"},{begin:"\\b0[bB][0-1](_?[0-1])*r?i?\\b"
+},{begin:"\\b0[oO][0-7](_?[0-7])*r?i?\\b"},{
+begin:"\\b0[xX][0-9a-fA-F](_?[0-9a-fA-F])*r?i?\\b"},{
+begin:"\\b0(_?[0-7])+r?i?\\b"}]},l={className:"params",begin:"\\(",end:"\\)",
+endsParent:!0,keywords:i},o=[t,{className:"class",beginKeywords:"class module",
+end:"$|;",illegal:/=/,contains:[n.inherit(n.TITLE_MODE,{
+begin:"[A-Za-z_]\\w*(::\\w+)*(\\?|!)?"}),{begin:"<\\s*",contains:[{
+begin:"("+n.IDENT_RE+"::)?"+n.IDENT_RE,relevance:0}]}].concat(b)},{
+className:"function",begin:e(/def\s*/,(_=a+"\\s*(\\(|;|$)",e("(?=",_,")"))),
+relevance:0,keywords:"def",end:"$|;",contains:[n.inherit(n.TITLE_MODE,{begin:a
+}),l].concat(b)},{begin:n.IDENT_RE+"::"},{className:"symbol",
+begin:n.UNDERSCORE_IDENT_RE+"(!|\\?)?:",relevance:0},{className:"symbol",
+begin:":(?!\\s)",contains:[t,{begin:a}],relevance:0},d,{className:"variable",
+begin:"(\\$\\W)|((\\$|@@?)(\\w+))(?=[^@$?])(?![A-Za-z])(?![@$?'])"},{
+className:"params",begin:/\|/,end:/\|/,relevance:0,keywords:i},{
+begin:"("+n.RE_STARTERS_RE+"|unless)\\s*",keywords:"unless",contains:[{
+className:"regexp",contains:[n.BACKSLASH_ESCAPE,c],illegal:/\n/,variants:[{
+begin:"/",end:"/[a-z]*"},{begin:/%r\{/,end:/\}[a-z]*/},{begin:"%r\\(",
+end:"\\)[a-z]*"},{begin:"%r!",end:"![a-z]*"},{begin:"%r\\[",end:"\\][a-z]*"}]
+}].concat(r,b),relevance:0}].concat(r,b);var _;c.contains=o,l.contains=o
+;const E=[{begin:/^\s*=>/,starts:{end:"$",contains:o}},{className:"meta",
+begin:"^([>?]>|[\\w#]+\\(\\w+\\):\\d+:\\d+>|(\\w+-)?\\d+\\.\\d+\\.\\d+(p\\d+)?[^\\d][^>]+>)(?=[ ])",
+starts:{end:"$",contains:o}}];return b.unshift(r),{name:"Ruby",
+aliases:["rb","gemspec","podspec","thor","irb"],keywords:i,illegal:/\/\*/,
+contains:[n.SHEBANG({binary:"ruby"})].concat(E).concat(b).concat(o)}}})());hljs.registerLanguage("yaml",(()=>{"use strict";return e=>{
+var n="true false yes no null",a="[\\w#;/?:@&=+$,.~*'()[\\]]+",s={
+className:"string",relevance:0,variants:[{begin:/'/,end:/'/},{begin:/"/,end:/"/
+},{begin:/\S+/}],contains:[e.BACKSLASH_ESCAPE,{className:"template-variable",
+variants:[{begin:/\{\{/,end:/\}\}/},{begin:/%\{/,end:/\}/}]}]},i=e.inherit(s,{
+variants:[{begin:/'/,end:/'/},{begin:/"/,end:/"/},{begin:/[^\s,{}[\]]+/}]}),l={
+end:",",endsWithParent:!0,excludeEnd:!0,keywords:n,relevance:0},t={begin:/\{/,
+end:/\}/,contains:[l],illegal:"\\n",relevance:0},g={begin:"\\[",end:"\\]",
+contains:[l],illegal:"\\n",relevance:0},b=[{className:"attr",variants:[{
+begin:"\\w[\\w :\\/.-]*:(?=[ \t]|$)"},{begin:'"\\w[\\w :\\/.-]*":(?=[ \t]|$)'},{
+begin:"'\\w[\\w :\\/.-]*':(?=[ \t]|$)"}]},{className:"meta",begin:"^---\\s*$",
+relevance:10},{className:"string",
+begin:"[\\|>]([1-9]?[+-])?[ ]*\\n( +)[^ ][^\\n]*\\n(\\2[^\\n]+\\n?)*"},{
+begin:"<%[%=-]?",end:"[%-]?%>",subLanguage:"ruby",excludeBegin:!0,excludeEnd:!0,
+relevance:0},{className:"type",begin:"!\\w+!"+a},{className:"type",
+begin:"!<"+a+">"},{className:"type",begin:"!"+a},{className:"type",begin:"!!"+a
+},{className:"meta",begin:"&"+e.UNDERSCORE_IDENT_RE+"$"},{className:"meta",
+begin:"\\*"+e.UNDERSCORE_IDENT_RE+"$"},{className:"bullet",begin:"-(?=[ ]|$)",
+relevance:0},e.HASH_COMMENT_MODE,{beginKeywords:n,keywords:{literal:n}},{
+className:"number",
+begin:"\\b[0-9]{4}(-[0-9][0-9]){0,2}([Tt \\t][0-9][0-9]?(:[0-9][0-9]){2})?(\\.[0-9]*)?([ \\t])*(Z|[-+][0-9][0-9]?(:[0-9][0-9])?)?\\b"
+},{className:"number",begin:e.C_NUMBER_RE+"\\b",relevance:0},t,g,s],r=[...b]
+;return r.pop(),r.push(i),l.contains=r,{name:"YAML",case_insensitive:!0,
+aliases:["yml","YAML"],contains:b}}})());hljs.registerLanguage("properties",(()=>{"use strict";return e=>{
+var n="[ \\t\\f]*",a=n+"[:=]"+n,t="("+a+"|[ \\t\\f]+)",r="([^\\\\\\W:= \\t\\f\\n]|\\\\.)+",s="([^\\\\:= \\t\\f\\n]|\\\\.)+",i={
+end:t,relevance:0,starts:{className:"string",end:/$/,relevance:0,contains:[{
+begin:"\\\\\\\\"},{begin:"\\\\\\n"}]}};return{name:".properties",
+case_insensitive:!0,illegal:/\S/,contains:[e.COMMENT("^\\s*[!#]","$"),{
+returnBegin:!0,variants:[{begin:r+a,relevance:1},{begin:r+"[ \\t\\f]+",
+relevance:0}],contains:[{className:"attr",begin:r,endsParent:!0,relevance:0}],
+starts:i},{begin:s+t,returnBegin:!0,relevance:0,contains:[{className:"meta",
+begin:s,endsParent:!0,relevance:0}],starts:i},{className:"attr",relevance:0,
+begin:s+n+"$"}]}}})());hljs.registerLanguage("nginx",(()=>{"use strict";return e=>{const n={
+className:"variable",variants:[{begin:/\$\d+/},{begin:/\$\{/,end:/\}/},{
+begin:/[$@]/+e.UNDERSCORE_IDENT_RE}]},a={endsWithParent:!0,keywords:{
+$pattern:"[a-z/_]+",
+literal:"on off yes no true false none blocked debug info notice warn error crit select break last permanent redirect kqueue rtsig epoll poll /dev/poll"
+},relevance:0,illegal:"=>",contains:[e.HASH_COMMENT_MODE,{className:"string",
+contains:[e.BACKSLASH_ESCAPE,n],variants:[{begin:/"/,end:/"/},{begin:/'/,end:/'/
+}]},{begin:"([a-z]+):/",end:"\\s",endsWithParent:!0,excludeEnd:!0,contains:[n]
+},{className:"regexp",contains:[e.BACKSLASH_ESCAPE,n],variants:[{begin:"\\s\\^",
+end:"\\s|\\{|;",returnEnd:!0},{begin:"~\\*?\\s+",end:"\\s|\\{|;",returnEnd:!0},{
+begin:"\\*(\\.[a-z\\-]+)+"},{begin:"([a-z\\-]+\\.)+\\*"}]},{className:"number",
+begin:"\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(:\\d{1,5})?\\b"},{
+className:"number",begin:"\\b\\d+[kKmMgGdshdwy]*\\b",relevance:0},n]};return{
+name:"Nginx config",aliases:["nginxconf"],contains:[e.HASH_COMMENT_MODE,{
+begin:e.UNDERSCORE_IDENT_RE+"\\s+\\{",returnBegin:!0,end:/\{/,contains:[{
+className:"section",begin:e.UNDERSCORE_IDENT_RE}],relevance:0},{
+begin:e.UNDERSCORE_IDENT_RE+"\\s",end:";|\\{",returnBegin:!0,contains:[{
+className:"attribute",begin:e.UNDERSCORE_IDENT_RE,starts:a}],relevance:0}],
+illegal:"[^\\s\\}]"}}})());hljs.registerLanguage("plaintext",(()=>{"use strict";return t=>({
+name:"Plain text",aliases:["text","txt"],disableAutodetect:!0})})());hljs.registerLanguage("css",(()=>{"use strict"
+;const e=["a","abbr","address","article","aside","audio","b","blockquote","body","button","canvas","caption","cite","code","dd","del","details","dfn","div","dl","dt","em","fieldset","figcaption","figure","footer","form","h1","h2","h3","h4","h5","h6","header","hgroup","html","i","iframe","img","input","ins","kbd","label","legend","li","main","mark","menu","nav","object","ol","p","q","quote","samp","section","span","strong","summary","sup","table","tbody","td","textarea","tfoot","th","thead","time","tr","ul","var","video"],t=["any-hover","any-pointer","aspect-ratio","color","color-gamut","color-index","device-aspect-ratio","device-height","device-width","display-mode","forced-colors","grid","height","hover","inverted-colors","monochrome","orientation","overflow-block","overflow-inline","pointer","prefers-color-scheme","prefers-contrast","prefers-reduced-motion","prefers-reduced-transparency","resolution","scan","scripting","update","width","min-width","max-width","min-height","max-height"],i=["active","any-link","blank","checked","current","default","defined","dir","disabled","drop","empty","enabled","first","first-child","first-of-type","fullscreen","future","focus","focus-visible","focus-within","has","host","host-context","hover","indeterminate","in-range","invalid","is","lang","last-child","last-of-type","left","link","local-link","not","nth-child","nth-col","nth-last-child","nth-last-col","nth-last-of-type","nth-of-type","only-child","only-of-type","optional","out-of-range","past","placeholder-shown","read-only","read-write","required","right","root","scope","target","target-within","user-invalid","valid","visited","where"],o=["after","backdrop","before","cue","cue-region","first-letter","first-line","grammar-error","marker","part","placeholder","selection","slotted","spelling-error"],r=["align-content","align-items","align-self","animation","animation-delay","animation-direction","animation-duration","animation-fill-mode","animation-iteration-count","animation-name","animation-play-state","animation-timing-function","auto","backface-visibility","background","background-attachment","background-clip","background-color","background-image","background-origin","background-position","background-repeat","background-size","border","border-bottom","border-bottom-color","border-bottom-left-radius","border-bottom-right-radius","border-bottom-style","border-bottom-width","border-collapse","border-color","border-image","border-image-outset","border-image-repeat","border-image-slice","border-image-source","border-image-width","border-left","border-left-color","border-left-style","border-left-width","border-radius","border-right","border-right-color","border-right-style","border-right-width","border-spacing","border-style","border-top","border-top-color","border-top-left-radius","border-top-right-radius","border-top-style","border-top-width","border-width","bottom","box-decoration-break","box-shadow","box-sizing","break-after","break-before","break-inside","caption-side","clear","clip","clip-path","color","column-count","column-fill","column-gap","column-rule","column-rule-color","column-rule-style","column-rule-width","column-span","column-width","columns","content","counter-increment","counter-reset","cursor","direction","display","empty-cells","filter","flex","flex-basis","flex-direction","flex-flow","flex-grow","flex-shrink","flex-wrap","float","font","font-display","font-family","font-feature-settings","font-kerning","font-language-override","font-size","font-size-adjust","font-stretch","font-style","font-variant","font-variant-ligatures","font-variation-settings","font-weight","height","hyphens","icon","image-orientation","image-rendering","image-resolution","ime-mode","inherit","initial","justify-content","left","letter-spacing","line-height","list-style","list-style-image","list-style-position","list-style-type","margin","margin-bottom","margin-left","margin-right","margin-top","marks","mask","max-height","max-width","min-height","min-width","nav-down","nav-index","nav-left","nav-right","nav-up","none","normal","object-fit","object-position","opacity","order","orphans","outline","outline-color","outline-offset","outline-style","outline-width","overflow","overflow-wrap","overflow-x","overflow-y","padding","padding-bottom","padding-left","padding-right","padding-top","page-break-after","page-break-before","page-break-inside","perspective","perspective-origin","pointer-events","position","quotes","resize","right","src","tab-size","table-layout","text-align","text-align-last","text-decoration","text-decoration-color","text-decoration-line","text-decoration-style","text-indent","text-overflow","text-rendering","text-shadow","text-transform","text-underline-position","top","transform","transform-origin","transform-style","transition","transition-delay","transition-duration","transition-property","transition-timing-function","unicode-bidi","vertical-align","visibility","white-space","widows","width","word-break","word-spacing","word-wrap","z-index"].reverse()
+;return n=>{const a=(e=>({IMPORTANT:{className:"meta",begin:"!important"},
+HEXCOLOR:{className:"number",begin:"#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})"},
+ATTRIBUTE_SELECTOR_MODE:{className:"selector-attr",begin:/\[/,end:/\]/,
+illegal:"$",contains:[e.APOS_STRING_MODE,e.QUOTE_STRING_MODE]}
+}))(n),l=[n.APOS_STRING_MODE,n.QUOTE_STRING_MODE];return{name:"CSS",
+case_insensitive:!0,illegal:/[=|'\$]/,keywords:{keyframePosition:"from to"},
+classNameAliases:{keyframePosition:"selector-tag"},
+contains:[n.C_BLOCK_COMMENT_MODE,{begin:/-(webkit|moz|ms|o)-(?=[a-z])/
+},n.CSS_NUMBER_MODE,{className:"selector-id",begin:/#[A-Za-z0-9_-]+/,relevance:0
+},{className:"selector-class",begin:"\\.[a-zA-Z-][a-zA-Z0-9_-]*",relevance:0
+},a.ATTRIBUTE_SELECTOR_MODE,{className:"selector-pseudo",variants:[{
+begin:":("+i.join("|")+")"},{begin:"::("+o.join("|")+")"}]},{
+className:"attribute",begin:"\\b("+r.join("|")+")\\b"},{begin:":",end:"[;}]",
+contains:[a.HEXCOLOR,a.IMPORTANT,n.CSS_NUMBER_MODE,...l,{
+begin:/(url|data-uri)\(/,end:/\)/,relevance:0,keywords:{built_in:"url data-uri"
+},contains:[{className:"string",begin:/[^)]/,endsWithParent:!0,excludeEnd:!0}]
+},{className:"built_in",begin:/[\w-]+(?=\()/}]},{
+begin:(s=/@/,((...e)=>e.map((e=>(e=>e?"string"==typeof e?e:e.source:null)(e))).join(""))("(?=",s,")")),
+end:"[{;]",relevance:0,illegal:/:/,contains:[{className:"keyword",
+begin:/@-?\w[\w]*(-\w+)*/},{begin:/\s/,endsWithParent:!0,excludeEnd:!0,
+relevance:0,keywords:{$pattern:/[a-z-]+/,keyword:"and or not only",
+attribute:t.join(" ")},contains:[{begin:/[a-z-]+(?=:)/,className:"attribute"
+},...l,n.CSS_NUMBER_MODE]}]},{className:"selector-tag",
+begin:"\\b("+e.join("|")+")\\b"}]};var s}})());hljs.registerLanguage("json",(()=>{"use strict";return n=>{const e={
+literal:"true false null"
+},i=[n.C_LINE_COMMENT_MODE,n.C_BLOCK_COMMENT_MODE],a=[n.QUOTE_STRING_MODE,n.C_NUMBER_MODE],l={
+end:",",endsWithParent:!0,excludeEnd:!0,contains:a,keywords:e},t={begin:/\{/,
+end:/\}/,contains:[{className:"attr",begin:/"/,end:/"/,
+contains:[n.BACKSLASH_ESCAPE],illegal:"\\n"},n.inherit(l,{begin:/:/
+})].concat(i),illegal:"\\S"},s={begin:"\\[",end:"\\]",contains:[n.inherit(l)],
+illegal:"\\S"};return a.push(t,s),i.forEach((n=>{a.push(n)})),{name:"JSON",
+contains:a,keywords:e,illegal:"\\S"}}})());hljs.registerLanguage("bash",(()=>{"use strict";function e(...e){
+return e.map((e=>{return(s=e)?"string"==typeof s?s:s.source:null;var s
+})).join("")}return s=>{const n={},t={begin:/\$\{/,end:/\}/,contains:["self",{
+begin:/:-/,contains:[n]}]};Object.assign(n,{className:"variable",variants:[{
+begin:e(/\$[\w\d#@][\w\d_]*/,"(?![\\w\\d])(?![$])")},t]});const a={
+className:"subst",begin:/\$\(/,end:/\)/,contains:[s.BACKSLASH_ESCAPE]},i={
+begin:/<<-?\s*(?=\w+)/,starts:{contains:[s.END_SAME_AS_BEGIN({begin:/(\w+)/,
+end:/(\w+)/,className:"string"})]}},c={className:"string",begin:/"/,end:/"/,
+contains:[s.BACKSLASH_ESCAPE,n,a]};a.contains.push(c);const o={begin:/\$\(\(/,
+end:/\)\)/,contains:[{begin:/\d+#[0-9a-f]+/,className:"number"},s.NUMBER_MODE,n]
+},r=s.SHEBANG({binary:"(fish|bash|zsh|sh|csh|ksh|tcsh|dash|scsh)",relevance:10
+}),l={className:"function",begin:/\w[\w\d_]*\s*\(\s*\)\s*\{/,returnBegin:!0,
+contains:[s.inherit(s.TITLE_MODE,{begin:/\w[\w\d_]*/})],relevance:0};return{
+name:"Bash",aliases:["sh","zsh"],keywords:{$pattern:/\b[a-z._-]+\b/,
+keyword:"if then else elif fi for while in do done case esac function",
+literal:"true false",
+built_in:"break cd continue eval exec exit export getopts hash pwd readonly return shift test times trap umask unset alias bind builtin caller command declare echo enable help let local logout mapfile printf read readarray source type typeset ulimit unalias set shopt autoload bg bindkey bye cap chdir clone comparguments compcall compctl compdescribe compfiles compgroups compquote comptags comptry compvalues dirs disable disown echotc echoti emulate fc fg float functions getcap getln history integer jobs kill limit log noglob popd print pushd pushln rehash sched setcap setopt stat suspend ttyctl unfunction unhash unlimit unsetopt vared wait whence where which zcompile zformat zftp zle zmodload zparseopts zprof zpty zregexparse zsocket zstyle ztcp"
+},contains:[r,s.SHEBANG(),l,o,s.HASH_COMMENT_MODE,i,c,{className:"",begin:/\\"/
+},{className:"string",begin:/'/,end:/'/},n]}}})());hljs.registerLanguage("scss",(()=>{"use strict"
+;const e=["a","abbr","address","article","aside","audio","b","blockquote","body","button","canvas","caption","cite","code","dd","del","details","dfn","div","dl","dt","em","fieldset","figcaption","figure","footer","form","h1","h2","h3","h4","h5","h6","header","hgroup","html","i","iframe","img","input","ins","kbd","label","legend","li","main","mark","menu","nav","object","ol","p","q","quote","samp","section","span","strong","summary","sup","table","tbody","td","textarea","tfoot","th","thead","time","tr","ul","var","video"],t=["any-hover","any-pointer","aspect-ratio","color","color-gamut","color-index","device-aspect-ratio","device-height","device-width","display-mode","forced-colors","grid","height","hover","inverted-colors","monochrome","orientation","overflow-block","overflow-inline","pointer","prefers-color-scheme","prefers-contrast","prefers-reduced-motion","prefers-reduced-transparency","resolution","scan","scripting","update","width","min-width","max-width","min-height","max-height"],i=["active","any-link","blank","checked","current","default","defined","dir","disabled","drop","empty","enabled","first","first-child","first-of-type","fullscreen","future","focus","focus-visible","focus-within","has","host","host-context","hover","indeterminate","in-range","invalid","is","lang","last-child","last-of-type","left","link","local-link","not","nth-child","nth-col","nth-last-child","nth-last-col","nth-last-of-type","nth-of-type","only-child","only-of-type","optional","out-of-range","past","placeholder-shown","read-only","read-write","required","right","root","scope","target","target-within","user-invalid","valid","visited","where"],r=["after","backdrop","before","cue","cue-region","first-letter","first-line","grammar-error","marker","part","placeholder","selection","slotted","spelling-error"],o=["align-content","align-items","align-self","animation","animation-delay","animation-direction","animation-duration","animation-fill-mode","animation-iteration-count","animation-name","animation-play-state","animation-timing-function","auto","backface-visibility","background","background-attachment","background-clip","background-color","background-image","background-origin","background-position","background-repeat","background-size","border","border-bottom","border-bottom-color","border-bottom-left-radius","border-bottom-right-radius","border-bottom-style","border-bottom-width","border-collapse","border-color","border-image","border-image-outset","border-image-repeat","border-image-slice","border-image-source","border-image-width","border-left","border-left-color","border-left-style","border-left-width","border-radius","border-right","border-right-color","border-right-style","border-right-width","border-spacing","border-style","border-top","border-top-color","border-top-left-radius","border-top-right-radius","border-top-style","border-top-width","border-width","bottom","box-decoration-break","box-shadow","box-sizing","break-after","break-before","break-inside","caption-side","clear","clip","clip-path","color","column-count","column-fill","column-gap","column-rule","column-rule-color","column-rule-style","column-rule-width","column-span","column-width","columns","content","counter-increment","counter-reset","cursor","direction","display","empty-cells","filter","flex","flex-basis","flex-direction","flex-flow","flex-grow","flex-shrink","flex-wrap","float","font","font-display","font-family","font-feature-settings","font-kerning","font-language-override","font-size","font-size-adjust","font-stretch","font-style","font-variant","font-variant-ligatures","font-variation-settings","font-weight","height","hyphens","icon","image-orientation","image-rendering","image-resolution","ime-mode","inherit","initial","justify-content","left","letter-spacing","line-height","list-style","list-style-image","list-style-position","list-style-type","margin","margin-bottom","margin-left","margin-right","margin-top","marks","mask","max-height","max-width","min-height","min-width","nav-down","nav-index","nav-left","nav-right","nav-up","none","normal","object-fit","object-position","opacity","order","orphans","outline","outline-color","outline-offset","outline-style","outline-width","overflow","overflow-wrap","overflow-x","overflow-y","padding","padding-bottom","padding-left","padding-right","padding-top","page-break-after","page-break-before","page-break-inside","perspective","perspective-origin","pointer-events","position","quotes","resize","right","src","tab-size","table-layout","text-align","text-align-last","text-decoration","text-decoration-color","text-decoration-line","text-decoration-style","text-indent","text-overflow","text-rendering","text-shadow","text-transform","text-underline-position","top","transform","transform-origin","transform-style","transition","transition-delay","transition-duration","transition-property","transition-timing-function","unicode-bidi","vertical-align","visibility","white-space","widows","width","word-break","word-spacing","word-wrap","z-index"].reverse()
+;return a=>{const n=(e=>({IMPORTANT:{className:"meta",begin:"!important"},
+HEXCOLOR:{className:"number",begin:"#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})"},
+ATTRIBUTE_SELECTOR_MODE:{className:"selector-attr",begin:/\[/,end:/\]/,
+illegal:"$",contains:[e.APOS_STRING_MODE,e.QUOTE_STRING_MODE]}
+}))(a),l=r,s=i,d="@[a-z-]+",c={className:"variable",
+begin:"(\\$[a-zA-Z-][a-zA-Z0-9_-]*)\\b"};return{name:"SCSS",case_insensitive:!0,
+illegal:"[=/|']",contains:[a.C_LINE_COMMENT_MODE,a.C_BLOCK_COMMENT_MODE,{
+className:"selector-id",begin:"#[A-Za-z0-9_-]+",relevance:0},{
+className:"selector-class",begin:"\\.[A-Za-z0-9_-]+",relevance:0
+},n.ATTRIBUTE_SELECTOR_MODE,{className:"selector-tag",
+begin:"\\b("+e.join("|")+")\\b",relevance:0},{className:"selector-pseudo",
+begin:":("+s.join("|")+")"},{className:"selector-pseudo",
+begin:"::("+l.join("|")+")"},c,{begin:/\(/,end:/\)/,contains:[a.CSS_NUMBER_MODE]
+},{className:"attribute",begin:"\\b("+o.join("|")+")\\b"},{
+begin:"\\b(whitespace|wait|w-resize|visible|vertical-text|vertical-ideographic|uppercase|upper-roman|upper-alpha|underline|transparent|top|thin|thick|text|text-top|text-bottom|tb-rl|table-header-group|table-footer-group|sw-resize|super|strict|static|square|solid|small-caps|separate|se-resize|scroll|s-resize|rtl|row-resize|ridge|right|repeat|repeat-y|repeat-x|relative|progress|pointer|overline|outside|outset|oblique|nowrap|not-allowed|normal|none|nw-resize|no-repeat|no-drop|newspaper|ne-resize|n-resize|move|middle|medium|ltr|lr-tb|lowercase|lower-roman|lower-alpha|loose|list-item|line|line-through|line-edge|lighter|left|keep-all|justify|italic|inter-word|inter-ideograph|inside|inset|inline|inline-block|inherit|inactive|ideograph-space|ideograph-parenthesis|ideograph-numeric|ideograph-alpha|horizontal|hidden|help|hand|groove|fixed|ellipsis|e-resize|double|dotted|distribute|distribute-space|distribute-letter|distribute-all-lines|disc|disabled|default|decimal|dashed|crosshair|collapse|col-resize|circle|char|center|capitalize|break-word|break-all|bottom|both|bolder|bold|block|bidi-override|below|baseline|auto|always|all-scroll|absolute|table|table-cell)\\b"
+},{begin:":",end:";",
+contains:[c,n.HEXCOLOR,a.CSS_NUMBER_MODE,a.QUOTE_STRING_MODE,a.APOS_STRING_MODE,n.IMPORTANT]
+},{begin:"@(page|font-face)",lexemes:d,keywords:"@page @font-face"},{begin:"@",
+end:"[{;]",returnBegin:!0,keywords:{$pattern:/[a-z-]+/,
+keyword:"and or not only",attribute:t.join(" ")},contains:[{begin:d,
+className:"keyword"},{begin:/[a-z-]+(?=:)/,className:"attribute"
+},c,a.QUOTE_STRING_MODE,a.APOS_STRING_MODE,n.HEXCOLOR,a.CSS_NUMBER_MODE]}]}}
+})());hljs.registerLanguage("apache",(()=>{"use strict";return e=>{const n={
+className:"number",begin:/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(:\d{1,5})?/}
+;return{name:"Apache config",aliases:["apacheconf"],case_insensitive:!0,
+contains:[e.HASH_COMMENT_MODE,{className:"section",begin:/<\/?/,end:/>/,
+contains:[n,{className:"number",begin:/:\d{1,5}/
+},e.inherit(e.QUOTE_STRING_MODE,{relevance:0})]},{className:"attribute",
+begin:/\w+/,relevance:0,keywords:{
+nomarkup:"order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername"
+},starts:{end:/$/,relevance:0,keywords:{literal:"on off all deny allow"},
+contains:[{className:"meta",begin:/\s\[/,end:/\]$/},{className:"variable",
+begin:/[\$%]\{/,end:/\}/,contains:["self",{className:"number",begin:/[$%]\d+/}]
+},n,{className:"number",begin:/\d+/},e.QUOTE_STRING_MODE]}}],illegal:/\S/}}
+})());hljs.registerLanguage("javascript",(()=>{"use strict"
+;const e="[A-Za-z$_][0-9A-Za-z$_]*",n=["as","in","of","if","for","while","finally","var","new","function","do","return","void","else","break","catch","instanceof","with","throw","case","default","try","switch","continue","typeof","delete","let","yield","const","class","debugger","async","await","static","import","from","export","extends"],a=["true","false","null","undefined","NaN","Infinity"],s=[].concat(["setInterval","setTimeout","clearInterval","clearTimeout","require","exports","eval","isFinite","isNaN","parseFloat","parseInt","decodeURI","decodeURIComponent","encodeURI","encodeURIComponent","escape","unescape"],["arguments","this","super","console","window","document","localStorage","module","global"],["Intl","DataView","Number","Math","Date","String","RegExp","Object","Function","Boolean","Error","Symbol","Set","Map","WeakSet","WeakMap","Proxy","Reflect","JSON","Promise","Float64Array","Int16Array","Int32Array","Int8Array","Uint16Array","Uint32Array","Float32Array","Array","Uint8Array","Uint8ClampedArray","ArrayBuffer"],["EvalError","InternalError","RangeError","ReferenceError","SyntaxError","TypeError","URIError"])
+;function r(e){return t("(?=",e,")")}function t(...e){return e.map((e=>{
+return(n=e)?"string"==typeof n?n:n.source:null;var n})).join("")}return i=>{
+const c=e,o={begin:/<[A-Za-z0-9\\._:-]+/,end:/\/[A-Za-z0-9\\._:-]+>|\/>/,
+isTrulyOpeningTag:(e,n)=>{const a=e[0].length+e.index,s=e.input[a]
+;"<"!==s?">"===s&&(((e,{after:n})=>{const a="</"+e[0].slice(1)
+;return-1!==e.input.indexOf(a,n)})(e,{after:a
+})||n.ignoreMatch()):n.ignoreMatch()}},l={$pattern:e,keyword:n,literal:a,
+built_in:s},b="\\.([0-9](_?[0-9])*)",g="0|[1-9](_?[0-9])*|0[0-7]*[89][0-9]*",d={
+className:"number",variants:[{
+begin:`(\\b(${g})((${b})|\\.)?|(${b}))[eE][+-]?([0-9](_?[0-9])*)\\b`},{
+begin:`\\b(${g})\\b((${b})\\b|\\.)?|(${b})\\b`},{
+begin:"\\b(0|[1-9](_?[0-9])*)n\\b"},{
+begin:"\\b0[xX][0-9a-fA-F](_?[0-9a-fA-F])*n?\\b"},{
+begin:"\\b0[bB][0-1](_?[0-1])*n?\\b"},{begin:"\\b0[oO][0-7](_?[0-7])*n?\\b"},{
+begin:"\\b0[0-7]+n?\\b"}],relevance:0},E={className:"subst",begin:"\\$\\{",
+end:"\\}",keywords:l,contains:[]},u={begin:"html`",end:"",starts:{end:"`",
+returnEnd:!1,contains:[i.BACKSLASH_ESCAPE,E],subLanguage:"xml"}},_={
+begin:"css`",end:"",starts:{end:"`",returnEnd:!1,
+contains:[i.BACKSLASH_ESCAPE,E],subLanguage:"css"}},m={className:"string",
+begin:"`",end:"`",contains:[i.BACKSLASH_ESCAPE,E]},N={className:"comment",
+variants:[i.COMMENT(/\/\*\*(?!\/)/,"\\*/",{relevance:0,contains:[{
+className:"doctag",begin:"@[A-Za-z]+",contains:[{className:"type",begin:"\\{",
+end:"\\}",relevance:0},{className:"variable",begin:c+"(?=\\s*(-)|$)",
+endsParent:!0,relevance:0},{begin:/(?=[^\n])\s/,relevance:0}]}]
+}),i.C_BLOCK_COMMENT_MODE,i.C_LINE_COMMENT_MODE]
+},y=[i.APOS_STRING_MODE,i.QUOTE_STRING_MODE,u,_,m,d,i.REGEXP_MODE]
+;E.contains=y.concat({begin:/\{/,end:/\}/,keywords:l,contains:["self"].concat(y)
+});const f=[].concat(N,E.contains),A=f.concat([{begin:/\(/,end:/\)/,keywords:l,
+contains:["self"].concat(f)}]),p={className:"params",begin:/\(/,end:/\)/,
+excludeBegin:!0,excludeEnd:!0,keywords:l,contains:A};return{name:"Javascript",
+aliases:["js","jsx","mjs","cjs"],keywords:l,exports:{PARAMS_CONTAINS:A},
+illegal:/#(?![$_A-z])/,contains:[i.SHEBANG({label:"shebang",binary:"node",
+relevance:5}),{label:"use_strict",className:"meta",relevance:10,
+begin:/^\s*['"]use (strict|asm)['"]/
+},i.APOS_STRING_MODE,i.QUOTE_STRING_MODE,u,_,m,N,d,{
+begin:t(/[{,\n]\s*/,r(t(/(((\/\/.*$)|(\/\*(\*[^/]|[^*])*\*\/))\s*)*/,c+"\\s*:"))),
+relevance:0,contains:[{className:"attr",begin:c+r("\\s*:"),relevance:0}]},{
+begin:"("+i.RE_STARTERS_RE+"|\\b(case|return|throw)\\b)\\s*",
+keywords:"return throw case",contains:[N,i.REGEXP_MODE,{className:"function",
+begin:"(\\([^()]*(\\([^()]*(\\([^()]*\\)[^()]*)*\\)[^()]*)*\\)|"+i.UNDERSCORE_IDENT_RE+")\\s*=>",
+returnBegin:!0,end:"\\s*=>",contains:[{className:"params",variants:[{
+begin:i.UNDERSCORE_IDENT_RE,relevance:0},{className:null,begin:/\(\s*\)/,skip:!0
+},{begin:/\(/,end:/\)/,excludeBegin:!0,excludeEnd:!0,keywords:l,contains:A}]}]
+},{begin:/,/,relevance:0},{className:"",begin:/\s/,end:/\s*/,skip:!0},{
+variants:[{begin:"<>",end:"</>"},{begin:o.begin,"on:begin":o.isTrulyOpeningTag,
+end:o.end}],subLanguage:"xml",contains:[{begin:o.begin,end:o.end,skip:!0,
+contains:["self"]}]}],relevance:0},{className:"function",
+beginKeywords:"function",end:/[{;]/,excludeEnd:!0,keywords:l,
+contains:["self",i.inherit(i.TITLE_MODE,{begin:c}),p],illegal:/%/},{
+beginKeywords:"while if switch catch for"},{className:"function",
+begin:i.UNDERSCORE_IDENT_RE+"\\([^()]*(\\([^()]*(\\([^()]*\\)[^()]*)*\\)[^()]*)*\\)\\s*\\{",
+returnBegin:!0,contains:[p,i.inherit(i.TITLE_MODE,{begin:c})]},{variants:[{
+begin:"\\."+c},{begin:"\\$"+c}],relevance:0},{className:"class",
+beginKeywords:"class",end:/[{;=]/,excludeEnd:!0,illegal:/[:"[\]]/,contains:[{
+beginKeywords:"extends"},i.UNDERSCORE_TITLE_MODE]},{begin:/\b(?=constructor)/,
+end:/[{;]/,excludeEnd:!0,contains:[i.inherit(i.TITLE_MODE,{begin:c}),"self",p]
+},{begin:"(get|set)\\s+(?="+c+"\\()",end:/\{/,keywords:"get set",
+contains:[i.inherit(i.TITLE_MODE,{begin:c}),{begin:/\(\)/},p]},{begin:/\$[(.]/}]
+}}})());

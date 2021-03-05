@@ -1,5 +1,5 @@
 {
-    "version": "9.18.1",
+    "version": "10.6.0",
     "name": "highlight",
     "title": "Highlight.js",
     "package-type": "library",
@@ -8,6 +8,14 @@
     "description": "Syntax highlighting for the Web",
     "files": [
         "highlight.pack.js",
-        "github.css"       
-    ]       
+        "darcula.css"       
+    ],
+    "versions": {
+        "github": {
+            "files": [
+                "highlight.pack.js",
+                "github.css"    
+            ]
+        }
+    }       
 }
