@@ -1,5 +1,5 @@
 {
-    "version": "10.6.0",
+    "version": "10.6.1",
     "name": "highlight",
     "title": "Highlight.js",
     "package-type": "library",
@@ -15,6 +15,24 @@
             "files": [
                 "highlight.pack.js",
                 "github.css"    
+            ]
+        },
+        "dark": {
+            "files": [
+                "highlight.pack.js",
+                "dark.css"    
+            ]
+        },
+        "default": {
+            "files": [
+                "highlight.pack.js",
+                "default.css"    
+            ]
+        },
+        "atelier": {
+            "files": [
+                "highlight.pack.js",
+                "atelier-forest-light.css"    
             ]
         }
     }       
