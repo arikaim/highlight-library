@@ -1,5 +1,5 @@
 {
-    "version": "10.6.1",
+    "version": "10.6.2",
     "name": "highlight",
     "title": "Highlight.js",
     "package-type": "library",
@@ -11,6 +11,12 @@
         "darcula.css"       
     ],
     "versions": {
+        "prism": {
+            "files": [
+                "prism/prism.js",
+                "prism/prism.css"    
+            ]
+        },
         "github": {
             "files": [
                 "highlight.pack.js",

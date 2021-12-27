@@ -3,6 +3,7 @@
 
 
 [Highlight.js](https://highlightjs.org/usage) library for Arikaim CMS 
+[Prism](https://prismjs.com) library 
 
 
 #### Requirements 
@@ -15,4 +16,28 @@
 
 composer require arikaim/highlight-library
 
+```
+
+#### Include in theme 
+
+In theme package file arikaim-package.json
+
+add code
+
+```json
+"include": {    
+    "library": [
+        "highlight"
+    ]
+}
+```
+
+for prism library
+
+```json
+"include": {    
+    "library": [
+        "highlight:prism"
+    ]
+}
 ```
