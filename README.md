@@ -20,7 +20,7 @@ composer require arikaim/highlight-library
 
 #### Include in theme 
 
-In theme package file arikaim-package.json
+In theme package file **arikaim-package.json**
 
 add code
 
