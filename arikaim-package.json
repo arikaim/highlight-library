@@ -1,5 +1,5 @@
 {
-    "version": "10.6.2",
+    "version": "10.6.3",
     "name": "highlight",
     "title": "Highlight.js",
     "package-type": "library",
@@ -11,10 +11,21 @@
         "darcula.css"       
     ],
     "versions": {
+        "microlight": {
+            "files": [
+                "microlight/microlight.js"
+            ]
+        },
         "prism": {
             "files": [
                 "prism/prism.js",
                 "prism/prism.css"    
+            ]
+        },
+        "androidstudio": {
+            "files": [
+                "highlight.pack.js",
+                "androidstudio.css"    
             ]
         },
         "github": {
